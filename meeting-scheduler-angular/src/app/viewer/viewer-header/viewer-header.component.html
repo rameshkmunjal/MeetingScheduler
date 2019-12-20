@@ -1,0 +1,7 @@
+<!---------------------------------buttons menu for calendar view starts here----------------------->
+<div class="d-flex justify-content-center pt-4">
+  <a class="headerBtn" [ngClass]="{'activeBtn': isDayBtnActive == true, 'headerBtn': isDayBtnActive == false }" (click)="showCalendar('day')" >Day</a>
+  <a class="headerBtn" [ngClass]="{'activeBtn': isWeekBtnActive == true, 'headerBtn': isWeekBtnActive == false }" (click)="showCalendar('week')">Week</a>
+  <a class="headerBtn" [ngClass]="{'activeBtn': isMonthBtnActive == true, 'headerBtn': isMonthBtnActive == false }" (click)="showCalendar('month')">Month</a>     
+</div>
+<!-------------------------------------button menu ends here----------------------------------------------->

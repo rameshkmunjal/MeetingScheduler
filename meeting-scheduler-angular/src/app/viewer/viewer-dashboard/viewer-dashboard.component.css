@@ -1,0 +1,91 @@
+.navbar{
+	background:#17252A;
+}
+.main{	
+	min-height:85vh;
+	background:rgb(193, 247, 205);
+}
+
+.footer{
+	font-size: 1.00rem;
+	background:#17252A;	
+}
+
+.error-message{
+	color:red;
+}
+.mtgInfo{
+	font-size:0.65rem;
+}
+
+td, th{
+	min-width:10vw;
+	max-width:20vw;
+}
+/*-------------------------------------------------*/
+
+
+.main{
+    position:relative;
+}
+#msg-box{
+    display:none;
+    position:absolute;
+    left:10px;
+    bottom:10px;
+    z-index:9999;
+    background:rgb(210, 250, 230);
+    border:1px solid #777;
+    padding:20px;
+}
+#msg-box ul{
+    list-style:none;
+}
+
+
+#alert-box{
+	background:rgb(210, 250, 230);
+	padding:10px 20px 20px 50px;
+	width:auto;
+	height:auto;	
+	color:rgb(12, 45, 66);
+	position:absolute;
+	left:10px;
+	bottom:200px;
+	z-index:10000;
+	border:1px solid #777;	
+	display:none;
+}
+#alert-box ul{
+	list-style-type:none;
+	padding:0px !important;
+	margin:0px !important;
+}
+#alert-box ul li{
+	border-bottom:1px solid #ddd;
+	padding:0px !important;
+	margin:0px !important;
+}
+.alertBtn{
+	background:rgb(14, 14, 245);
+	color:white;
+	font-weight:bold;
+}
+.alertBtn:hover{
+	background:rgb(2, 2, 15);
+	color:white;
+	font-weight:bold;
+}
+.navLink{
+	color:#777;
+	text-decoration:none;
+}
+.navLink:hover{
+	color:white !important;
+}
+
+
+
+
+
+

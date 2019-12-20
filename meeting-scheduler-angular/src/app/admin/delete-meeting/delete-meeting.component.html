@@ -1,0 +1,19 @@
+<nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a [routerLink]="['/admin-dashboard/home']">Home</a></li>
+            <li class="breadcrumb-item"><a [routerLink]="['/admin-dashboard/single-meeting', meetingId]">Single Meeting</a></li>
+            <li class="breadcrumb-item active">Delete</li>
+        </ol>
+      </nav>
+<!--------------------------div row holds msg to confirm deletion of meeting---------------------->
+  <div class="row">
+      <div class="col-xs-8 offset-xs-2 col-sm-6 offset-sm-3 col-md-4 offset-md-4 bg-dark text-white mt-3 mb-3 p-3">
+          <p class="text-center mt-3">Are you sure - you want to delete this record ?</p>
+          <div class="d-flex justify-content-around mt-3">
+              <button class="red-btn" (click)="cancelMeeting(mtgId)">Delete</button>
+              <button class="green-btn" (click)="cancelDeleteAction()">Cancel</button>
+          </div>  
+        </div>
+  </div>
+<!-----------------------------------div row ends here-------------------- --------------------------->
+

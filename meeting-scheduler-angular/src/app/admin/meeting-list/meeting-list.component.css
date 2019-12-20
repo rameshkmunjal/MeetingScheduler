@@ -1,0 +1,10 @@
+.my-btn{
+    background:white;
+    color:black;
+    font-weight:bold;
+    border-right:1px solid black;
+}
+.selected{
+    background:black;
+    color:white !important;    
+}

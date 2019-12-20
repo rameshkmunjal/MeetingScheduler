@@ -1,0 +1,46 @@
+<!----------------------------Calendar related code starts here---------------------------------------->
+<!--container holding arrow keys --- previous/next--> 
+<div class="row">
+  <div class="col-xs-12 col-md-12 fs-150 mt-3 mb-3 d-flex justify-content-center">               
+    <span><i class="fa fa-arrow-left pr-3" (click)="getPreviousMonth()"></i></span>
+    <span class="month-div">{{month}} 2019</span>                
+    <span><i class="fa fa-arrow-right pl-3"  (click)="getNextMonth()"></i></span>     
+  </div>               
+</div>
+ <!--row class ends-->       
+          
+<!---------------------------------calendar view starts here-------------- ------------> 
+<div class="row d-flex justify-content-center">
+  <div class="col-xs-12 col-md-12" id="calendar">      
+      <table *ngIf="mtgData.length > 0" class="tbl  table-hover text-center mb-3">
+          <tr>
+              <th>Sun</th>
+              <th>Mon</th>
+              <th>Tue</th>
+              <th>Wed</th>
+              <th>Thu</th>
+              <th>Fri</th>
+              <th>Sat</th>
+          </tr>
+          <tr *ngFor="let row of mtgData">
+              <td class="mtg-cell" *ngFor="let cell of row " 
+              [ngClass]="{'currentDate': cell.date == currentDate && currentMonth==month}"
+              (click)="displayMeetingsOfSelectedDate(cell.date)"
+              >
+                <p class="datePara">{{cell.date}}</p>                
+                <p class="mtgInfo" *ngFor="let mtg of cell.mtgs " (click)="showMeeting(mtg.id)">
+                    <a style="color:black;" [routerLink]="['/admin-dashboard/single-meeting', mtg.id]" data-toggle="tooltip" data-placement="right" 
+                      title={{mtg.startTime}}-{{mtg.endTime}}:{{mtg.subject}}>
+                      {{mtg.startTime}}-{{mtg.endTime}} : {{mtg.subject}}
+                    </a>
+                </p>               
+              </td>
+          </tr>                                
+      </table>
+
+        
+  </div><!--col class ends--->
+  
+</div><!-- row class ends-->       
+ <!------------------calendar view ends here---------------->      
+<!-----------------------calendar related code ends here------------------------------->

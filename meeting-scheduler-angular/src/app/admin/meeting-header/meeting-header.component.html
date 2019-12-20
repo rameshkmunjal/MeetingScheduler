@@ -1,0 +1,6 @@
+<!---------------------------------buttons menu for meeting view starts here----------------------->
+<div class="d-flex justify-content-center pt-4">
+  <a class="headerBtn" [ngClass]="{'activeBtn': isUpcoming == true, 'headerBtn': isUpcoming == false }" (click)="showMeetings('upcoming')" >Upcoming</a>
+  <a class="headerBtn" [ngClass]="{'activeBtn': isPrevious == true, 'headerBtn': isPrevious == false }" (click)="showMeetings('previous')">Previous</a>     
+</div>
+<!--------------------------------------button menu ends here----------------------------------------------->

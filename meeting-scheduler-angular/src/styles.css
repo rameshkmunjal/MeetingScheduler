@@ -1,0 +1,265 @@
+/*--- You can add global styles to this file, and also import other style files-- */
+@import "~bootstrap/dist/css/bootstrap.css";
+/* TOASTR BUGFIX */
+#toast-container > div {
+    opacity: 1;
+  }
+  .toast {
+    font-size: initial !important;
+    border: initial !important;
+    backdrop-filter: blur(0) !important;
+  }
+  .toast-success {
+    background-color:darkblue !important;
+    border-radius:10px;
+    color:white !important;
+    width:200px !important;
+    height:auto;
+    position:fixed;
+    top:80px;
+    right:50px;
+    text-align: center;
+    padding:5px 20px;
+  }
+  .toast-error {
+    background-color: rgb(225, 37, 117) !important;
+    border-radius:10px;
+    color:white !important;
+    width:200px !important;
+    height:auto;
+    position:fixed;
+    top:80px;
+    right:50px;
+    text-align: center;
+    padding:5px 20px;
+  }
+  .toast-info {
+    background-color: #2F96B4 !important;
+  }
+  .toast-warning {
+    background-color: #F89406 !important;
+  }
+  
+  /*-----------------------------------background:#3AAFA9;-----------------*/
+  .navbar{
+    background:#17252A;
+  }
+  .main{	
+    min-height:87vh;
+    background:rgb(193, 247, 205);
+  }
+  form{
+    padding:2vh 2vw; 	
+    background:#17252A; 
+  }  
+  .footer{
+    font-size: 1.00rem;
+    background:#17252A;	
+  }  
+  .error-message{
+    color:red;
+  }
+  .my-bg-color{
+    background:rgb(12, 45, 66);    
+    color:white;
+    font-weight:bold;
+  }
+  .currentDate{
+    color:red;
+    font-weight:bold;
+  }
+
+/*---classes for font-sizes*/
+.fs-75{
+  font-size: 0.75rem
+}
+.fs-150{
+	font-size:1.50rem;
+}
+/*--------CSS settings for form-----------*/
+label{
+	color:white;
+}
+.time-line{
+	width:30%;
+	margin-left:5%;
+}
+.time-line:first-child{
+	margin-left:0%;
+}
+.half-box{
+  width:45%;
+}
+/*------------------------CSS settings for calendar pages------------------------- */
+.my-btn{
+  background:white;
+  color:black;
+  font-weight:bold;
+  border-right:1px solid black;
+}
+.selected{
+  background:black;
+  color:white !important;    
+}
+/*---------------------------------------------------------------------------------*/
+
+.breadcrumb{
+	background:rgb(193, 247, 205) !important;
+		
+}
+.breadcrumb-item a{
+	color:darkgreen !important;
+	text-decoration: none;
+}
+
+.active{
+	color:rgb(245, 83, 8) !important;
+	cursor: pointer;
+}
+/*----------------------------------------------------------------------------------*/
+.nav-link{
+  color:white !important;
+}
+.nav-link:hover{
+  color:orange !important;
+  font-weight:bold;
+}
+/*---------------------------------------------------------------------------------*/
+/*---classes for buttons*/
+.submitBtn{
+  background:white; 
+  font-weight:bold; 
+}
+.submitBtn:hover{  
+  background:#aaa;
+  font-weight:bold;
+}
+.red-btn{
+  background:red; 
+  color:white;
+  width:6.0rem;
+  height:2.0rem;
+  text-align:center;
+  border:none;
+}
+.green-btn{
+  background:green; 
+  color:white;
+  width:6.0rem;
+  height:2.0rem;
+  text-align:center;
+  border:none;
+}
+/* snooze button of alert box */
+.snoozeBtn{
+	background:rgb(14, 14, 245);
+	color:white;
+	font-weight:bold;
+}
+.snoozeBtn:hover{
+	background:rgb(2, 2, 15);
+	color:white;
+	font-weight:bold;
+}
+/*---buttons for navigation with in page---*/
+.headerBtn{
+  background:white;
+  color:black;
+  font-weight:bold;
+  border:1px solid black; 
+  padding:10px 20px;
+}
+.activeBtn{
+  background:black;
+  color:white !important;
+  font-weight:bold;
+  border:1px solid black; 
+  padding:10px 20px;
+}
+
+/*-------------------------------------------------------------------------------------*/
+.mtg-cell{
+	padding:0px !important;
+}
+.mtgInfo{
+	 background:coral; 
+   color:black;
+   word-wrap:breack-word;    
+   overflow: hidden;
+   text-overflow: ellipsis; 
+   border-bottom: 1px solid #777;   
+   
+}
+
+.mr-100{  
+  margin-right:1.00rem;
+}
+/*used in daily calendar  */
+.hour-cell{
+  width:15vw;
+  border:none;
+  background:rgb(193, 247, 205);
+  text-align:right;
+}
+/*used in daily calendar */
+.contents-cell{
+  width:75vw ;
+}
+
+/*------------------------------------------------------------------------------------*/
+
+@media screen and (max-width:768px){		
+	.tbl{		
+		font-size:0.50rem;		
+		margin:0 auto;	
+		color:#333;	
+    background:white;        	
+	}
+	td, th{
+		border:1px solid #aaa;     
+    width:12vw;   
+	}	
+	tr:hover{
+		cursor:pointer
+  }
+  .heading{
+    font-size:1.00rem;
+    font-weight:bold;
+  }
+  .btn{
+    font-size:0.80rem;
+  }
+  .mtgInfo{    
+    width: 13vw;
+    font-size:8px;    
+  }
+}
+
+@media screen and (min-width:769px){	
+	.tbl{
+		font-size:0.90rem;
+		margin:0 auto;
+		background:white;	
+	}
+	td, th{
+		border:1px solid #aaa;
+    padding:0.50rem 0.50rem !important;
+    word-break:break-all; 
+    width:10vw;   
+	}	
+	tr:hover{
+		cursor:pointer
+  }
+  .heading{
+    font-size:1.80rem;
+    font-weight:bold;
+  }
+  .btn{
+    font-size:1.00rem;
+  }
+  .mtgInfo{     
+    width: 10vw; 
+    font-size:10px;   
+  }
+}
+  

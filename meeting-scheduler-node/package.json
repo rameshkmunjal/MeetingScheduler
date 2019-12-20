@@ -1,0 +1,26 @@
+{
+  "name": "meeting-planner",
+  "version": "1.0.0",
+  "description": "\"meeting planner project \"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ramesh",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.24.0",
+    "mongoose": "^5.6.9",
+    "nodemailer": "^6.3.0",
+    "nodemon": "^1.19.1",
+    "pino": "^5.13.2",
+    "redis": "^2.8.0",
+    "shortid": "^2.2.14",
+    "socket.io": "^2.2.0"
+  }
+}

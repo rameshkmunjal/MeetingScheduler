@@ -1,0 +1,2 @@
+1. in create-meeting.html min attribute is not bound with todate. Hence past dates can also be input .
+2.

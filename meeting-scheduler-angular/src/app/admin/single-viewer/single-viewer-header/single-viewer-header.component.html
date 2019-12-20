@@ -1,0 +1,13 @@
+<!---------------------------------buttons menu for calendar view starts here----------------------->
+<div class="d-flex justify-content-center pt-4">
+  <a class="headerBtn" [ngClass]="{'activeBtn': isDaily == true, 'headerBtn': isDaily == false }" (click)="showCalendar('daily')" >Daily</a>
+  <a class="headerBtn" [ngClass]="{'activeBtn': isWeekly == true, 'headerBtn': isWeekly == false }" (click)="showCalendar('weekly')">Weekly</a> 
+  <a class="headerBtn" [ngClass]="{'activeBtn': isMonthly == true, 'headerBtn': isMonthly == false }" (click)="showCalendar('monthly')">Monthly</a>         
+</div>
+<div class="row pt-4">
+    <div class="col-md-3 offset-md-9">
+      <button class="btn createBtn" [routerLink]="['/admin-dashboard/create']">New Meeting</button>  
+    </div>  
+</div>
+
+<!-------------------------------------button menu ends here----------------------------------------------->

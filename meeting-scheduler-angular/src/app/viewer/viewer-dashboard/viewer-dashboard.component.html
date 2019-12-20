@@ -1,0 +1,59 @@
+<!------------------------collapsible navbar starts here------------------------------------------>
+<nav class="navbar navbar-expand-md navbar-dark">    
+    <a class="navbar-brand" [routerLink]="['/viewer-dashboard', userId]">ABC Ltd</a><span class="text-white">Welcome : {{fullName}}</span>         
+    <a class="nav-link ml-3" [routerLink]="['/logout', userId]">Logout</a>        
+</nav>
+<!-------------------------------------navbar ends here----------------------------------->
+<div class="container-fluid main">
+    <app-viewer-header (calendarSelected)="onNavigate($event)"></app-viewer-header>
+
+    <app-day [userID]="userId" *ngIf="periodSelected=='day'"></app-day>
+    <app-week [userID]="userId" *ngIf="periodSelected=='week'"></app-week>
+    <app-month [userID]="userId"  *ngIf="periodSelected=='month'"></app-month>
+
+
+    
+            <!----------------msg-box----------------------------->
+              <div id="msg-box">
+                  <h5 class="text-center">{{mtgData.meetingName}}</h5>
+                  <ul>
+                    <li><b>Date : </b> {{mtgDate}}</li>
+                    <li><b>From : </b>{{mtgData.startTime}}</li>
+                    <li><b>To : </b>{{mtgData.endTime}}</li>
+                    <li><b>Venue : </b>{{mtgData.meetingVenue}}</li>
+                    <li><b> Convenor : </b> {{mtgData.convenor}}</li>
+                    <li><b> Contact  : </b> {{mtgData.convenorMobile}}</li>
+                  </ul>      
+              </div><!--msg-box div ended--> 
+              
+        <!-----------------alert-box will show meeting alerts--------------->
+            <div id="alert-box">
+                <div class="d-flex justify-content-end">
+                    <a  (click)="cancelAlerts()">
+                      <i class="fa fa-close" style="font-size:24px"></i>
+                    </a>
+                </div>          
+                  
+                <h5>{{mtg.meetingName}}</h5>
+                <ul>
+                  <li><b>Date : </b> {{mtgDate}}</li>
+                  <li><b>Start : </b>{{mtg.startTime}}</li>
+                  <li><b>End : </b>{{mtg.endTime}}</li>
+                  <li><b>Venue : </b>{{mtg.meetingVenue}}</li>
+                  <li><b> Convenor : </b> {{mtg.convenor}}</li>
+                  <li><b> Contact  : </b> {{mtg.convenorMobile}}</li>
+                </ul>
+                <div class="text-center mt-3">
+                  <button class="btn alertBtn" (click)="snoozeAlerts(mtg)">Snooze</button>                  
+                </div>      
+              </div>
+              <!------------alert-box ended----------------------->
+             
+        
+</div>
+<!---->
+<!----------------------------footer container starts here--------------------------------> 
+<div class=" container-fluid  footer  text-white text-center pt-2">
+    <p class="pb-2">@Ramesh Kumar Munjal</p>
+</div>
+<!--------------------------------footer ends here---------------------------------------->

@@ -1,0 +1,4 @@
+<app-invitee-header (typeSelected)="onNavigate($event)" ></app-invitee-header>
+
+<app-invitee-list *ngIf="selectedType=='invitees'"></app-invitee-list>
+<app-non-invitee-list *ngIf="selectedType=='non-invitees'" ></app-non-invitee-list>      

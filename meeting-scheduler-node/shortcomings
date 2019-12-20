@@ -1,0 +1,29 @@
+PROBLEM STATEMENT REQUIREMENTS
+
+1. Redis not used so far
+
+
+
+USER INTERFACE RELATED 
+1. improve look and feel of login , signup and forgot password forms.
+2. create one more box for country name in signup form.
+3. create a function - 10 digit validation for mobile applicable only for india.
+4. first digit of mobile should be 7, 8 or 9. 
+5.
+
+
+RESPONSIVENESS
+
+
+
+OTHER FRONTEND
+1. Top header bar should include login name and logout link. 
+2. create button should be available in admin dashboard.
+3. delete new meeting menu item. 
+4. create weekly and daily calendar as per google calendar. 
+5. when a meeting is created - by default all viewers should be invitee. 
+6. admin should have an option  to delete or add a viewer as invitee in this array.
+
+
+OTHER BACKEND
+1. in case of errors - if any - in event handlers, a message to be sent to the admin.

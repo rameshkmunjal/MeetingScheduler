@@ -1,0 +1,9 @@
+<app-meeting-header (meetingSelected)="onNavigate($event)"></app-meeting-header>
+
+<app-previous-meetings [title]="pagePreviousTitle" *ngIf="loadedFeature=='previous'"></app-previous-meetings>
+<app-upcoming-meetings [title]="pageUpcomingTitle" *ngIf="loadedFeature=='upcoming'"></app-upcoming-meetings>      
+    
+              
+        
+  
+  

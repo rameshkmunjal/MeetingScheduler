@@ -1,0 +1,7 @@
+.login-msg{
+    color:rgb(59, 2, 2);
+    margin-top:30vh;
+}
+.login-msg>a{
+    color:darkblue;
+}

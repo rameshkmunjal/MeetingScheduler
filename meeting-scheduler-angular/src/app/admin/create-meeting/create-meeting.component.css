@@ -1,0 +1,8 @@
+/* when three input boxes to be placed in one line */
+.time-line{
+	width:30%;
+	margin-left:5%;	
+}
+.time-line:first-child{
+	margin-left:0px;
+}

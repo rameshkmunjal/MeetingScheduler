@@ -1,0 +1,40 @@
+<div class="col-md-10 offset-md-2 d-flex justify-content-start">
+  <a (click)="goBack()" class="btn"><b>Go Back</b></a> 
+</div>
+<!---------------------------------date arrow keys code starts here----------------------------------->  
+<div class="container fs-150 text-center pt-3 pb-3"> 
+    <span>Meeting Date : </span> 
+    <span>{{date}} {{month}} {{year}}</span>
+</div>
+<!-----------------------------------date arrow keys code ends here------------------------------------> 
+<!-----------------------------------table starts here----------------------------------------------->
+  <table class="tbl table-hover text-center " *ngIf="mtgData.length > 0">
+    <tr>
+      <th class="hour-cell">Hour</th>
+      <th>Meetings</th>
+    </tr>
+  
+    <tr *ngFor="let mtg of mtgData">
+      <td class="hour-cell">{{mtg.hour}}</td>
+        
+      <td class="contents-cell">        
+        <div *ngIf="mtg.dayObj.mtgs.length > 0">
+          <p style="display:inline;" *ngFor="let mtg of mtg.dayObj.mtgs">              
+              <a class="mtgInfo fs-75 mr-100" [routerLink]="['/admin-dashboard/single-meeting', mtg.id]" 
+              data-toggle="tooltip" data-placement="right" 
+              title={{mtg.startTime}}-{{mtg.endTime}}{{mtg.subject}}>
+              {{mtg.startTime}}-{{mtg.endTime}}{{mtg.subject}}
+          </a>                
+          </p>
+        </div>
+                         
+      </td>
+    </tr>
+  </table>
+   
+  <!-------------------------------------table ends here----------------------------------------------->
+  <div class="pb-3">
+    
+  </div>
+  
+      

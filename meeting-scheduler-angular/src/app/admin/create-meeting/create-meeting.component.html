@@ -1,0 +1,89 @@
+<!--code to show create meeting page-->
+<!---div to show error messages-->
+<div class="row">
+    <div class="col-xs-12 col-md-4 offset-md-4">
+        <p class="error-message text-center"><b>{{errorMessage}}</b></p>
+    </div>
+</div>
+<!----row ended-->
+<!---div to show create meetings form-->
+<!---#createBlogForm="ngForm" (ngSubmit)="createBlog()"-->
+<div class="row">
+    <div class="col-xs-12 col-md-4 offset-md-4">        
+        <form #createForm="ngForm" (ngSubmit)="createMeeting()">
+          <h2 class="text-white text-center p-2 mb-3">Create Meeting</h2>
+          
+            <div class="mt-4">
+              <input type="text" class="form-control"  placeholder="Subject" name="meetingName" [(ngModel)]="meetingName" />            
+            </div>            
+            <!--div to show date-->
+            <div class="d-flex justify-space-between mt-4">            
+              
+                <select class="time-line form-control" name="day" [(ngModel)]="day" >
+                  <option>{{day}}</option>
+                  <option *ngFor="let day of days">{{day}}</option>
+                </select>
+
+                <select class="time-line form-control" name="month" [(ngModel)]="month" (change)="getDaysInAMonth()">
+                    <option>{{month}}</option>
+                  <option *ngFor="let month of monthsArray">{{month}}</option>
+                </select>
+
+                <input class="time-line form-control text-center" type="text" value="2019" readonly />
+              
+            </div><!--ended - div to show date-->
+
+            <!--div to show time-->
+            <div class="d-flex justify-space-between mt-4">
+                <div class="time-line text-white">
+                  Start Time :
+                </div>            
+              
+                <select class="time-line form-control" name="starthour" [(ngModel)]="starthour" (change)="getMinutes(starthour)">
+                  <option>{{starthour}}</option>
+                  <option *ngFor="let starthour of hours">{{starthour}}</option>
+                </select>
+
+                <select class="time-line form-control" name="startminutes" [(ngModel)]="startminutes">
+                    <option>{{startminutes}}</option>
+                  <option *ngFor="let startminutes of minutesArr">{{startminutes}}</option>
+                </select>
+                        
+          </div>
+           <!--div to show time--> 
+
+          <!--div to show time-->
+          <div class="d-flex justify-space-between mt-4">
+              <div class="time-line text-white">
+                End Time :
+              </div>            
+            
+              <select class="time-line form-control" name="endhour" [(ngModel)]="endhour" (change)="getMinutes(endhour)">
+                <option>{{endhour}}</option>
+                <option *ngFor="let endhour of hours">{{endhour}}</option>
+              </select>
+
+              <select class="time-line form-control" name="endminutes" [(ngModel)]="endminutes">
+                  <option>{{endminutes}}</option>
+                <option *ngFor="let endminutes of minutesArr">{{endminutes}}</option>
+              </select>
+                      
+        </div>
+         <!--div to show time-->   
+        <div class="mt-4">
+            <input type="text" class="form-control" placeholder="Venue" name="meetingVenue" [(ngModel)]="meetingVenue" /> 
+        </div>
+
+          <div class="btn-holder text-center mt-3 mb-3">
+              <button class="btn submitBtn" type="submit">Submit</button>
+          </div>
+      </form> 
+    </div>
+</div>
+<!---row ended-->  
+
+
+
+
+
+

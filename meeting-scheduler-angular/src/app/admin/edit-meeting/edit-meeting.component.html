@@ -1,0 +1,92 @@
+<nav class="pt-3">
+  <ol class="breadcrumb ">
+      <li class="breadcrumb-item"><a [routerLink]="['/admin-dashboard/home']">Home</a></li>
+      <li class="breadcrumb-item"><a [routerLink]="['/admin-dashboard/single-meeting', meetingId]">Single Meeting</a></li>
+      <li class="breadcrumb-item active">Edit</li>      
+  </ol>
+</nav>
+<!--------------------------------row showing error message starts ------------------------->
+<div class="row">
+  <div class="col-xs-12 col-md-6 offset-md-3">
+      <p class="error-message text-center"><b>{{errorMessage}}</b></p>
+  </div>
+</div>
+<!--------------------------------row ends here ------------------------------------------->
+<!-------------------------------row showing meeting details starts ------------------------>
+<div class="row" *ngIf="currentMeeting">
+  <div class="col-md-4 offset-md-4 col-xs-12">      
+      <form class="p-3 mt-3 mb-3" #editForm="ngForm" (ngSubmit)="editMeeting()"> 
+          <h2 class=" text-center  text-white pb-2 mt-3">Edit Meeting</h2>           
+          <div class="mt-4">
+            <label for="subject">Subject</label>
+            <input type="text" class="form-control"  placeholder="Subject" name="meetingName" 
+            [(ngModel)]="currentMeeting.meetingName" />            
+          </div>            
+          <!--div to show date-->
+          <div class="d-flex justify-space-between mt-4">
+              <select class="time-line form-control" name="day" [(ngModel)]="day" >
+                <option>{{day}}</option>
+                <option *ngFor="let day of days">{{day}}</option>
+              </select>
+
+              <select class="time-line form-control" name="month" [(ngModel)]="month" (change)="getDaysInAMonth()">
+                  <option>{{month}}</option>
+                <option *ngFor="let month of monthsArray">{{month}}</option>
+              </select>
+
+              <input class="time-line form-control text-center" type="text" value="2019" readonly />            
+          </div><!---ended - div to show date-->
+
+          <!--div to show time-->
+          <div class="d-flex justify-space-between mt-4">
+              <div class="time-line text-white">
+                Start Time :
+              </div>            
+            
+              <select class="time-line form-control" name="starthour" [(ngModel)]="starthour" (change)="getMinutes(starthour)">
+                <option>{{starthour}}</option>
+                <option *ngFor="let starthour of hours">{{starthour}}</option>
+              </select>
+
+              <select class="time-line form-control" name="startminutes" [(ngModel)]="startminutes">
+                  <option>{{startminutes}}</option>
+                <option *ngFor="let startminutes of minutesArr">{{startminutes}}</option>
+              </select>                      
+        </div>
+         <!--div to show time--> 
+
+        <!--div to show time-->
+        <div class="d-flex justify-space-between mt-4">
+            <div class="time-line text-white">
+              End Time :
+            </div>            
+          
+            <select class="time-line form-control" name="endhour" [(ngModel)]="endhour" (change)="getMinutes(endhour)">
+              <option>{{endhour}}</option>
+              <option *ngFor="let endhour of hours">{{endhour}}</option>
+            </select>
+
+            <select class="time-line form-control" name="endminutes" [(ngModel)]="endminutes">
+                <option>{{endminutes}}</option>
+              <option *ngFor="let endminutes of minutesArr">{{endminutes}}</option>
+            </select>
+                    
+      </div>
+       <!--div to show time-->   
+      <div class="mt-4">
+          <label for="venue">Venue</label>
+          <input type="text" class="form-control" placeholder="Venue" name="meetingVenue" 
+          [(ngModel)]="currentMeeting.meetingVenue" /> 
+      </div>
+
+        <div class="btn-holder text-center mt-3 mb-3">
+            <button class="btn submitBtn" type="submit">Submit</button>
+        </div>
+    </form>          
+  </div>
+</div>
+<!---------------------------------row showing meeting details ends  ------------------------>          
+  
+          
+  
+        

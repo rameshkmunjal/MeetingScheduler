@@ -1,0 +1,81 @@
+<!------------------------collapsible navbar starts here------------------------------------------>
+<nav class="navbar navbar-expand-md navbar-dark">
+    <a class="navbar-brand" [routerLink]="['home']">ABC Ltd</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['home']">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['allMeetings']">Meeting-List</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['single-viewer', userId]">Planner</a>            
+        </li>            
+      </ul>    
+    </div> 
+    <a class="navbar-brand text-white pull-right" [routerLink]="['home']">Welcome : {{fullName}}</a> 
+    <a class="nav-link"  [routerLink]="['/logout', userId]">Logout</a>
+  </nav>
+<!-------------------------------------navbar ends here----------------------------------->
+
+<!----------------------------------container holding outlet for all routes---------------->
+  <div class="container-fluid main">
+    <!----------------msg-box----------------------------->
+    <!--shows msg of new meeting or meeting edited-->
+      <div id="msg-box">
+          <h5 class="text-center">{{mtgData.meetingName}}</h5>
+          <ul>
+            <li><b>Date : </b> {{mtgDate}}</li>
+            <li><b>From : </b>{{mtgData.startTime}}</li>
+            <li><b>To : </b>{{mtgData.endTime}}</li>
+            <li><b>Venue : </b>{{mtgData.meetingVenue}}</li>
+            <li><b> Convenor : </b> {{mtgData.convenor}}</li>
+            <li><b> Contact  : </b> {{mtgData.convenorMobile}}</li>
+          </ul>      
+      </div><!--msg-box div ended--> 
+      
+<!-----------------alert-box will show meeting alerts--------------->
+    <div id="alert-box">
+        <div class="d-flex justify-content-end">
+            <a  (click)="cancelAlerts()">
+              <i class="fa fa-close" style="font-size:24px"></i>
+            </a>
+        </div>          
+          
+        <h5>{{mtg.meetingName}}</h5>
+        <ul>
+          <li><b>Date : </b> {{mtgDate}}</li>
+          <li><b>Start : </b>{{mtg.startTime}}</li>
+          <li><b>End : </b>{{mtg.endTime}}</li>
+          <li><b>Venue : </b>{{mtg.meetingVenue}}</li>
+          <li><b> Convenor : </b> {{mtg.convenor}}</li>
+          <li><b> Contact  : </b> {{mtg.convenorMobile}}</li>
+        </ul>
+        <div class="d-flex justify-content-between mt-3">
+          <button class="btn snoozeBtn" (click)="snoozeAlerts(mtg)">Snooze</button>          
+        </div>
+
+      </div>
+      <!------------alert-box ended----------------------->
+    <router-outlet></router-outlet>  
+  </div>
+<!--------------------------outlet container ends here------------------------------------>
+ 
+<!----------------------------footer container starts here--------------------------------> 
+  <div class=" container-fluid  footer  text-white text-center pt-2">
+      <p class="pb-2">@Ramesh Kumar Munjal</p>
+  </div>
+<!--------------------------------footer ends here---------------------------------------->
+
+    
+    
+  
+  
+			
+
+		
+

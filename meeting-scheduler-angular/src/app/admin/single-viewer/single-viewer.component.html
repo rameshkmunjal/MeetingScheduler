@@ -1,0 +1,13 @@
+<!--------------------------dropdown to select monthly / weekly / daily view------------------------------>
+<app-single-viewer-header (calendarSelected)="onNavigate($event)"></app-single-viewer-header>            
+
+<app-daily [userID]="userId" *ngIf="periodSelected=='daily'"></app-daily>
+<app-weekly [userID]="userId" *ngIf="periodSelected=='weekly'"></app-weekly>
+<app-monthly [userID]="userId" *ngIf="periodSelected=='monthly'"></app-monthly>
+  
+   
+
+
+
+
+

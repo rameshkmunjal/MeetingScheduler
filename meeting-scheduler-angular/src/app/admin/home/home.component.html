@@ -1,0 +1,40 @@
+<!---------------------------------------home component  starts here--------------------------------> 
+    <div class="col-md-12 col-xs-12 pt-3 px-4">       
+        <h2 class="heading text-center">Admin Dashboard</h2>
+        <div *ngIf="errorMessage">
+          <p class="error-message">{{errorMessage}}</p>
+        </div>
+      <!----table showing user list --> 
+        <table class="tbl  table-hover text-center mb-3" *ngIf="viewerList.length > 0">
+          <tr>
+            <th>Name</th>								
+            <th>Role</th>
+            <th>Email</th>
+            <th>Mobile Number</th>								
+          </tr>
+          <!----->
+          <tr  *ngFor="let viewer of viewerList | paginate : config" (click)="getViewerMeetingList(viewer.userId)">
+            <td>{{viewer.firstName}} {{viewer.lastName}}</td>
+            <td>{{viewer.role}}</td>
+            <td>{{viewer.email}}</td>
+            <td>{{viewer.mobileNumber}}</td>								
+          </tr>
+        </table>
+        <!--pagination code-->
+        <div class="d-flex justify-content-end" >
+          <span>
+            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+          </span>          
+        </div>
+        <!--pagination ended-->
+    </div>
+    
+    
+<!----------------------------home component ends here--------------------------------> 
+
+
+
+
+    
+  
+

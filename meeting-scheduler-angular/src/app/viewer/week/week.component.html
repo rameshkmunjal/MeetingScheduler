@@ -1,0 +1,39 @@
+<div class="pb-3 fs-150">
+  <div class="col-md-4 d-flex justify-content-center">
+            <span><i class="fa fa-arrow-left pr-3" (click)="getPreviousWeek()"></i></span> 
+            <span>{{startDate}} {{startDateMonth}} - {{endDate}} {{endDateMonth}} 2019</span>                  
+            <span><i class="fa fa-arrow-right pl-3" (click)="getNextWeek()"></i></span>
+   </div>
+</div>
+<!----------week choice container ends------>
+<!------------------table showing calendar view of week starts------------>
+<table class="tbl table-hover text-center" *ngIf="currentWeek.length > 0">
+  <tr *ngIf="days.length > 0">
+    <th>Hour</th>
+    <th *ngFor="let day of days"><p>{{day}}</p></th>
+  </tr>
+  <tr *ngIf="datesArray.length > 0">
+    <th></th>
+    <th *ngFor="let day of datesArray"><p>{{day.date}}</p></th>
+  </tr>
+  <tr *ngFor="let day of currentWeek">
+    <td >{{day.hour}}</td>
+    
+    <td *ngFor="let mtgs of day.weekObj">
+      <div *ngIf="mtgs.mtgs.length > 0">
+        <p class="mtgInfo" *ngFor="let mtg of mtgs.mtgs">
+          <a style="color:black;"  data-toggle="tooltip" data-placement="right" 
+                  title={{mtg.startTime}}-{{mtg.endTime}}:{{mtg.subject}}>
+                {{mtg.startTime}}-{{mtg.endTime}}: {{mtg.subject}}
+          </a>                 
+      </p>
+
+    </div>
+    </td>      
+  </tr>
+</table>
+<!-----------------------------------table ends here----------------------------------------------->
+<div class="pb-3">
+  
+</div>
+

@@ -1,0 +1,27 @@
+<!-----------------------invitees list to be displayed in this page----------------->
+<div class="row user-box">
+<div class="col-xs-12 col-md-12">
+  <p class="heading text-center">List of Invitees</p>
+    <table class="tbl  table-hover text-center mb-3" *ngIf="allInvitees.length > 0; else infoText">
+        <tr>
+          <th>Name</th>
+          <th>Role</th>
+          <th>Email</th>
+          <th>Mobile Number</th>
+          <th></th>								
+        </tr>
+        <tr  *ngFor="let viewer of allInvitees" >
+          <td>{{viewer.fullName}}</td>
+          <td>{{viewer.role}}</td>
+          <td>{{viewer.email}}</td>
+          <td>{{viewer.mobile}}</td>
+          <td class="text-center">                                                                
+              <button  class="my-bg-color" (click)="cancelInvitation(meetingId, viewer.userId )">Cancel</button>                              
+          </td>								
+        </tr>
+      </table>
+      <ng-template #infoText>
+        <p class="mt-3 text-center fs-150">No Info to display</p>
+    </ng-template>                 
+  </div>
+</div>
