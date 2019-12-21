@@ -109,32 +109,37 @@ public getMtgObject=()=>{
     convenorMobile:this.currentMeeting.convenorMobile,
     venue:this.currentMeeting.meetingVenue
   } 
-    
+  console.log(d); 
   return d;
 }
 
 //function to edit an existing meeting of the user 
   public editMeeting(){ 
+    let obj=this.getMtgObject();
       let mon = this.month; 
       this.monthIndex=this.monthsArray.indexOf(mon); 
-      let mtgStartDate=this.library.prepareDate(this.year, this.monthIndex, this.day, this.starthour, this.startminutes);      
-      let mtgEndDate=this.library.prepareDate(this.year, this.monthIndex, this.day, this.endhour, this.endminutes);      
+      let mtgStartDate=this.library.prepareDate(obj.year, this.monthIndex, obj.day, obj.starthour, obj.startminutes);      
+      let mtgEndDate=this.library.prepareDate(obj.year, this.monthIndex, obj.day, obj.endhour, obj.endminutes);      
       let currentDate=new Date();
-      let obj=this.getMtgObject(); //object of all input values for validation
+       //object of all input values for validation
     //validate inputs 
       this.errorMessage=this.library.validateInputs(obj);
        
       if(!this.errorMessage){
-        this.errorMessage=this.library.validateDateInput(mtgStartDate, currentDate);
-      } //checked : mtg date/time  is not prior to current time 
-      else if(!this.errorMessage){
-        this.errorMessage=this.library.validateDateInput(mtgEndDate, mtgStartDate);
-      } //checked : mtg end date/time is not prior to current time   
-    
+        if(new Date(currentDate) > new Date(mtgStartDate)){
+          this.errorMessage="Mtg start date/time can not be earlier than current date/time";
+        }
+        if(new Date(mtgStartDate) > new Date(mtgEndDate)){
+          this.errorMessage="Mtg end date/time can not be earlier than start date/time";
+        }
+      }       
+      
     //only when there is no error - after validation
     if(!this.errorMessage){           
       let mtgStartTime=this.library.prepareMeetingTime(mtgStartDate);
       let mtgEndTime=this.library.prepareMeetingTime(mtgEndDate);
+      console.log(mtgStartTime);
+      console.log(mtgEndTime);
       let data={
         meetingId:this.currentMeeting.meetingId,
         meetingName:this.currentMeeting.meetingName,
@@ -146,21 +151,22 @@ public getMtgObject=()=>{
         convenorMobile:this.currentMeeting.convenorMobile,       
         meetingVenue:this.currentMeeting.meetingVenue
       }
-      
+    console.log(data);  
     this.socketService.editMeeting(data);
     this.router.navigate(['/admin-dashboard/home']);
   }
   
 }
 
-//-------------------some utility functions------------------------------
+//--------------------some utility functions------------------------------
   public getDaysInAMonth(){//getting number of day in a month
     this.days=this.library.getDaysInAMonth(this.month);
   }
-  public getMinutes(){//getting minute values in an array 0-59
+  public getMinutes(){//getting minute values in an array 0-59    
     this.minutes="00";
-    this.minutesArr=this.library.getMinutes(this.hour);  
+    this.minutesArr=this.library.getMinutes();  
   }
+  
 //-------------------------------------------------------------------------
 //ending class definiton
 }

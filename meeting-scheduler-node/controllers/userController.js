@@ -265,15 +265,15 @@ let loginFunction=(req, res)=>{
             res.send(err);
         })    
 }
-//----------------------------------------------getBackPasswordFunction--------------------------------
+//----------------------------------------------getOTPFunction--------------------------------
 //This function will create OTP, save it in DB, send a msg to client and otp  by email
-let getBackPassword=(req, res)=>{    
+let getOTP=(req, res)=>{    
     //to create OTP
    let createOTP=()=>{
        return new Promise((resolve, reject)=>{
         UserModel.findOne({'userName':req.body.userName, 'email':req.body.email}, (err, userDetails)=>{                
             if(err){
-                    logger.error(err.message, 'User Controller: getBackPassword', 10);                    
+                    logger.error(err.message, 'User Controller: getOTP', 10);                    
                     let apiResponse=response.generate(true, "User Details could not be fetched", 500, null);
                     reject(apiResponse);
                 }
@@ -447,7 +447,7 @@ module.exports={
     signupFunction:signupFunction,
     loginFunction:loginFunction,
     logout:logout,
-    getBackPassword:getBackPassword,
+    getOTP:getOTP,
     testOTP:testOTP,
     updatePassword:updatePassword    
 }

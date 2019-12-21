@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     console.log("home component destroyed");
   }
-//----------------------------------function defintions------------------------------------------
+//----------------------------------function defintions-----------------------------------------
 //get list of all viewers  
   public createAllViewersList(authToken):any{     
     this.appService.getViewerList(authToken).subscribe(

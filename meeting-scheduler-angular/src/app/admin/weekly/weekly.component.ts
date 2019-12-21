@@ -24,6 +24,7 @@ export class WeeklyComponent implements OnInit, OnDestroy {
   public weekIndex:any;//index position of week in calendar
    
   public currentDate:Number=new Date().getDate();//current date
+  public selectedDate:Number=1;
   public year:String='2019'; //constant value
 //to hold dates/months  of week
   public startDate:number;//start date of week
@@ -81,6 +82,7 @@ export class WeeklyComponent implements OnInit, OnDestroy {
         this.weekIndex=this.currentWeek.weekIndex;
         this.weeklyArr=this.calendar.make24Objects(this.currentWeek);
         this.currentWeek=this.calendar.fillMeetingData(this.meetingArray, this.weeklyArr);
+        console.log(this.currentWeek);
         this.startDate=this.currentWeek[0].weekObj[0].date ;
         this.startDateMonth=this.currentWeek[0].weekObj[0].month ;
         this.endDate= this.currentWeek[0].weekObj[6].date   ;
@@ -156,5 +158,14 @@ public getNextWeek():any{
   this.datesArray=this.currentWeek[0].weekObj;  
 }
 //-------------------------------------------------------------------------
+//----------------------------------------------------------------------------
+//display meeting of selected date - when a date cell of calendar is clicked 
+public  displayMeetingsOfSelectedDate(dt){
+  console.log(dt);
+  this.selectedDate=dt;
+  console.log(this.selectedDate,  this.month, this.year, this.userID);
+  this.router.navigate(['admin-dashboard/single-date', this.selectedDate,  this.month, this.year, this.userID]);      
+}
+//------------------------------------------------------------------------------------------------------------
 
 }

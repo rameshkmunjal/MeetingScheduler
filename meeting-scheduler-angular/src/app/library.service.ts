@@ -49,13 +49,8 @@ export class LibraryService {
     return this.monthArray.indexOf(index);
   }
 
-  public getMinutes=(hour)=>{
-    console.log(hour);
-    if(hour==="24"){
-      return ["00"];
-    } else{
-      return this.minutesArray;
-    }
+  public getMinutes=()=>{    
+    return this.minutesArray;    
   }
 
   public getDaysInAMonth=(month)=>{
@@ -146,8 +141,9 @@ public findMinutesInArray(minutes){
   }
 
 //---------------------validate dates----------------------
-public validateDateInput(date1, date2):any{    
-    if(new Date(date1) > date2){
+public validateDateInput(date1, date2):any{
+  console.log(date1 + " :  "+date2);    
+    if(new Date(date1) > new Date(date2)){
       return "";
     } else {      
       return "check start date or end date";

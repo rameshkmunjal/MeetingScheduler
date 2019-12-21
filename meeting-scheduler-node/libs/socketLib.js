@@ -31,8 +31,7 @@ let setServer=(server)=>{
         console.log("*******socket at  server side set up*********");        
 
         socket.on('set-user', (authToken)=>{
-            console.log("set-user event is being handled");
-            
+            console.log("set-user event is being handled");            
             
             tokenLib.verifyClaimWithoutSecret(authToken, (err, user)=>{
                 if(err){
@@ -51,6 +50,7 @@ let setServer=(server)=>{
                         if (err) {
                             console.log(`some error occurred`)
                         } else {
+                            console.log(result);
                             // getting online users list.
                             redisLib.getAllUsersInAHash('onlineUsers', (err, result) => {
                                 console.log(`--- inside getAllUsersInAHas function ---`)
@@ -63,11 +63,9 @@ let setServer=(server)=>{
                                         socket.join(socket.room)
                                         socket.to(socket.room).broadcast.emit('online-user-list', result);
                                     }
-                                }) //redisLib function ended
-                               
+                                }) //redisLib function ended                               
                             }//else ended
-            })//setUserOnline callback ended
-            
+            })//setUserOnline callback ended            
         }//else ended
     })//tokenLib callback ended
 })//'set-user' event callback ended
@@ -91,7 +89,7 @@ let setServer=(server)=>{
         })
 
         socket.on('edit-meeting', (data)=>{
-            //console.log("data to edit a  meeting received " + data);
+            // console.log("data to edit a  meeting received " + data);
             data.eventType="edit";
             eventEmitter.emit('edit-a-meeting', data);           
             //to send data - by emitting event - send-email
@@ -102,25 +100,21 @@ let setServer=(server)=>{
  
 //-----------------------------------------------------------------------------------------------
         socket.on('send-invitation', (data)=>{
-            let msg=sendInvitation(data, function(inviteDataCB){
-                console.log("Here is invite data"+inviteDataCB);
+            let msg=sendInvitation(data, function(inviteDataCB){                
                 console.log(inviteDataCB);
+                console.log(msg);
             })
-            console.log("result of sendInvitation function : "+ msg);
         })
         socket.on('cancel-invitation', (data)=>{             
             let msg=cancelInvitation(data, function(delData){
                 console.log("Inside delete cb :: data result is: " + delData);
-                console.log(delData);
+                console.log(msg);
                 
             });
-            console.log("cancel invitation event handler called" + msg); 
-            //let a=addInvitees()           
-        })
+       })
         
-        socket.on('get-meeting-alerts', (mtg)=>{            
-                console.log("it is time to send alert");                
-                myIo.emit('show-alert-b4-one-minute', mtg);                                      
+        socket.on('get-meeting-alerts', (mtg)=>{               
+            myIo.emit('show-alert-b4-one-minute', mtg);                                      
         })
         
         //when disconnect happens
@@ -144,7 +138,6 @@ let setServer=(server)=>{
 }
 //------------------------------------------mongoose section ----------------------------------------------
 //event handler - create meeting
-
 let createMeeting=(data, meetingCompleteCB) =>{    
     //creating meeting object - using meetingModel
     let newMeeting= new MeetingModel({
@@ -158,14 +151,12 @@ let createMeeting=(data, meetingCompleteCB) =>{
         convenorMobile:data.convenorMobile,
         meetingVenue : data.meetingVenue        
     })
-    console.log("Before Mongo save")
+    
     //saving record using mongoose method - save
     newMeeting.save((err, result)=>{
         if(err){
             console.log(err);            
-        } else {
-            console.log("meeting created and data saved" );   
-            console.log(result); 
+        } else {            
             meetingCompleteCB(result);
             return result;
         }
@@ -173,8 +164,7 @@ let createMeeting=(data, meetingCompleteCB) =>{
 }
 
 //---------------------------------------Cancel Invitation-----------------------------------------------------
-let sendInvitation=(data, inviteDataCB)=>{ 
-    
+let sendInvitation=(data, inviteDataCB)=>{     
         let invitation= new InvitationModel({
             id:shortId.generate(),
             sentOn:Date.now(),
@@ -209,7 +199,6 @@ let cancelInvitation=(data, deleteCompletedCB)=>{
 }//cancel invitation ended
 
 //---------------------------------------Edit Meeting -----------------------------------------------------
-
 //event handler - edit meeting
 eventEmitter.on('edit-a-meeting', (data)=>{
     //creating meeting object - using meetingModel and mongoose method update
@@ -227,7 +216,6 @@ eventEmitter.on('edit-a-meeting', (data)=>{
 })//even edit a meeting ended
 //---------------------------------------Add Invitees -----------------------------------------------------
 //event handler - add invitees
-
 eventEmitter.on('add-invitees', (data)=>{
     //creating MongoDB record - using InvitationModel , UserModel and mongoose
     let mtgId=data.meetingId;

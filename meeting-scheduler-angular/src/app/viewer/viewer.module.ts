@@ -8,7 +8,7 @@ import { WeekComponent } from './week/week.component';
 import { MonthComponent } from './month/month.component';
 import { DayComponent } from './day/day.component';
 import { ViewerHeaderComponent } from './viewer-header/viewer-header.component';
-import { ClickToChangeDirective } from './click-to-change.directive';
+
 
 @NgModule({
   imports: [

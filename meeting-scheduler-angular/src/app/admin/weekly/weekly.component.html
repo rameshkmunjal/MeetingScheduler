@@ -15,14 +15,15 @@
   </tr>
   <tr *ngIf="datesArray.length > 0">
     <th></th>
-    <th *ngFor="let day of datesArray" ><p>{{day.date}}</p></th>
+    <th *ngFor="let day of datesArray" ><p (click)="displayMeetingsOfSelectedDate(day.date)">{{day.date}}</p></th>
   </tr>
   <tr *ngFor="let day of currentWeek" >
-    <td >{{day.hour}}</td>
-    
-    <td *ngFor="let mtgs of day.weekObj">
+    <!---->
+    <td >{{day.hour}}</td>    
+    <td *ngFor="let mtgs of day.weekObj" >
       <div *ngIf="mtgs.mtgs.length > 0">
-        <p class="mtgInfo" *ngFor="let mtg of mtgs.mtgs" (click)="showMeeting(mtg.id)">
+        <p class="mtgInfo" *ngFor="let mtg of mtgs.mtgs" >
+                   
           <a style="color:black;" [routerLink]="['/admin-dashboard/single-meeting', mtg.id]" 
               data-toggle="tooltip" data-placement="right" 
               title={{mtg.startTime}}-{{mtg.endTime}}:{{mtg.subject}}>

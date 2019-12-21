@@ -1,13 +1,13 @@
 //18.188.57.132 - redis connection
 const check=require('./checkLib');
 const redis=require("redis");
-const host="18.188.57.132";
+const host="18.224.2.71";
 const port="6379";
 var client = redis.createClient(port, host);
 
-    client.on('connect', ()=>{
-        console.log("Redis connectionn successfully opened");
-    })
+client.on('connect', ()=>{
+    console.log("Redis connectionn successfully opened");
+})
        
 
 client.on('error', (err) => {

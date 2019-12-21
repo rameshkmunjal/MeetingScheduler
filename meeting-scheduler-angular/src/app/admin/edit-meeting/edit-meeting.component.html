@@ -43,12 +43,12 @@
                 Start Time :
               </div>            
             
-              <select class="time-line form-control" name="starthour" [(ngModel)]="starthour" (change)="getMinutes(starthour)">
+              <select class="time-line form-control" name="starthour" [(ngModel)]="starthour" (change)="getMinutes()">
                 <option>{{starthour}}</option>
                 <option *ngFor="let starthour of hours">{{starthour}}</option>
               </select>
 
-              <select class="time-line form-control" name="startminutes" [(ngModel)]="startminutes">
+              <select class="time-line form-control" name="startminutes" [(ngModel)]="startminutes" >
                   <option>{{startminutes}}</option>
                 <option *ngFor="let startminutes of minutesArr">{{startminutes}}</option>
               </select>                      
@@ -61,7 +61,7 @@
               End Time :
             </div>            
           
-            <select class="time-line form-control" name="endhour" [(ngModel)]="endhour" (change)="getMinutes(endhour)">
+            <select class="time-line form-control" name="endhour" [(ngModel)]="endhour" (change)="getMinutes()">
               <option>{{endhour}}</option>
               <option *ngFor="let endhour of hours">{{endhour}}</option>
             </select>

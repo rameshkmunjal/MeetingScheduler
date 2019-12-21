@@ -1,4 +1,4 @@
-//creating MeetingSchema model as per schema and exporting it
+//creating  MeetingSchema model as per schema and exporting it
 const mongoose=require('mongoose');
 const Schema = mongoose.Schema;
 

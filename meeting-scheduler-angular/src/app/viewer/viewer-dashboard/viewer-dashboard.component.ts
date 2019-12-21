@@ -54,10 +54,16 @@ export class ViewerDashboardComponent implements OnInit, OnDestroy {
 
       this.monthNumber=new Date().getMonth();//current month index position
       this.monthName=this.library.getMonthName(this.monthNumber); //get current month name
-      this.day=new Date().getDate();//get today date       
-      this.getAllMeetings(this.authToken); 
-      this.getNewMeetingMessage(this.authToken); 
+      this.day=new Date().getDate();//get today date 
+      //socket calls       
+      this.checkStatus();    
+      this.verifyUserConfirmation();
+      this.getOnlineUserList(); 
       this.showAlertsB4OneMinute();
+      //function calls - meeting related      
+      this.getAllMeetings(this.authToken); 
+      this.getNewMeetingMessage(this.authToken);
+      
   }
 
   ngOnDestroy(){
@@ -117,20 +123,47 @@ export class ViewerDashboardComponent implements OnInit, OnDestroy {
   }  
 
 //-------------------------------------------------------------------------------------------------
-//when a new meeting is created - handle socket event
+//---------------------------------Socket Related Functions------------------------------------------
+  //if authToken is not given - navigate to login page - to prevent unauthorised login 
+  public checkStatus():any{
+    if(this.authToken===undefined || this.authToken===null || this.authToken===''){
+      this.router.navigate(['/login']);
+      return false;
+    } else {
+      return true;
+    }
+  }
+  
+  public verifyUserConfirmation():any{
+    this.socketService.verifyUser()
+        .subscribe(
+          (data)=>{
+            console.log(data);
+            this.socketService.setUser(this.authToken);
+          }, (err)=>{
+            console.log(err);
+          }
+        )
+  }
+  //get list of online users
+  public getOnlineUserList=():any=>{
+    this.socketService.onlineUserList().subscribe(
+      (data)=>{
+        console.log(data);
+      }
+    )
+  }
+//when a new meeting is created - listen socket event
 public getNewMeetingMessage(authToken):any{
   this.socketService.getNewMeetingMessage().subscribe(
-    apiResponse=>{
-      console.log(apiResponse);
-      this.mtgData=apiResponse;
-      console.log(this.mtgData);      
+    apiResponse=>{      
+      this.mtgData=apiResponse;            
       this.mtgDate=this.library.formatDate(this.mtgData.mtgStartDate);
       $('#msg-box').fadeIn(2000).delay(10000).fadeOut(2000);
       this.getAllMeetings(authToken);
       this.showAlertsB4OneMinute(); 
     }
-  );
-  
+  );  
 }
 //---------------------------------------------------------------------------------------------------------- 
 

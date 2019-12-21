@@ -8,13 +8,13 @@ const check=require('./../libs/checkLib');
 const logger=require('./../libs/loggerLib');
 
 //including model files and using models for db operations
-require('./../models/meeting');
+//require('./../models/meeting');
 const MeetingModel=mongoose.model('meeting');
 
-require('./../models/invitation');
+//require('./../models/invitation');
 const InvitationModel=mongoose.model('Invitation');
 
-require('./../models/user');
+//require('./../models/user');
 const UserModel=mongoose.model('User');
 
 //------------------------------------GET APIs-----------------------------------------------
@@ -271,9 +271,6 @@ let getSingleViewerMeetings=(req, res)=>{
 
 //-------------------------------------------Post APIs--------------------------------------------------
 
-//nMatched = 0, nModified = 0: the criteria matched nothing
-//nMatched = 1, nModified = 0: the criteria matched but the $set resulted in no change to the document
-//nMatched = 1, nModified = 1: the criteria matched and $set changed the document
 //-----------------------------------------------deleteMeeting---------------------------------------------
 let deleteMeeting=(req, res)=>{       
     //query to delete from meeting table
@@ -297,12 +294,12 @@ let deleteMeeting=(req, res)=>{
 //---------------------------------------------------------------------------------------------------------------
 //exporting all meeting functions
 module.exports={    
-    getSingleViewerMeetings:getSingleViewerMeetings,       
-    deleteMeeting:deleteMeeting,    
+    getSingleViewerMeetings:getSingleViewerMeetings,
     getSingleMeetingDetails:getSingleMeetingDetails,
     getAllMeetings:getAllMeetings,   
     getAllInvitees:getAllInvitees,
-    getAllNonInvitees:getAllNonInvitees
+    getAllNonInvitees:getAllNonInvitees,
+    deleteMeeting:deleteMeeting 
 }
 
  

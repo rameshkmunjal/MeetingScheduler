@@ -8,6 +8,7 @@ let generate=(error, message, status, data)=>{
     return response;  
 }
 
+
 module.exports={
     generate:generate
 }

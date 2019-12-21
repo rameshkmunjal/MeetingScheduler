@@ -123,8 +123,8 @@ public getMtgObject=()=>{
     }//end of function
 
   //---------------------------Some utility functions----------------------------------------------
-  public getMinutes=(hour)=>{ //get minutes array    
-    this.minutesArr=this.library.getMinutes(hour);    
+  public getMinutes=()=>{ //get minutes array    
+    this.minutesArr=this.library.getMinutes();    
   }
 
   public getDaysInAMonth=()=>{//get days array

@@ -66,7 +66,8 @@ export class AdminDashboardComponent implements OnInit {
     this.meetingService.getAllMeetings(authToken).subscribe(
       apiResponse=>{
         
-        this.meetingList=apiResponse.data;//list of all meetings         
+        this.meetingList=apiResponse.data;//list of all meetings 
+        console.log(this.meetingList);        
         this.todayMeetings=this.getMeetingsOfGivenDate(this.meetingList, this.day, this.monthNumber, this.year);
         
         if(this.todayMeetings !== undefined){
@@ -94,8 +95,7 @@ export class AdminDashboardComponent implements OnInit {
     ) 
   }
 //filter meetings from mtg data - when date. month and year given
-  public getMeetingsOfGivenDate(mtgList, day, monthNumber, year):any{       
-    
+  public getMeetingsOfGivenDate(mtgList, day, monthNumber, year):any{
         let mtgArr=mtgList.filter(function(some){          
           return new Date(some.mtgStartDate).getDate()==day &&
                  new  Date(some.mtgStartDate).getMonth()==monthNumber &&

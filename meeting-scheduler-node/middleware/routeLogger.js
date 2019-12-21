@@ -4,6 +4,7 @@ let requestIpLogger=(req, res, next)=>{
     let remoteIp=req.connection.remoteAddress+"://"+req.connection.remotePort;
     let realIp= req.headers['X-REAL-IP'];
     //console.log(req.method+" request made from remote IP "+ remoteIp + ' for route '+ req.originalUrl);
+    
 
     if(req.method==='OPTIONS'){
         var headers= {};

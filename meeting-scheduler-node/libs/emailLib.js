@@ -38,7 +38,7 @@ let sendMeetingInfo=(data, user)=>{
                     html: output // html body
                 };
 
-                // send mail with defined transport object
+                //send mail with defined transport object
                 transporter.sendMail(mailOptions, (error, info) => {
                     if (error) {
                         return console.log(error);

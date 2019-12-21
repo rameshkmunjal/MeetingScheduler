@@ -1,4 +1,4 @@
-//creating Auth model as per schema and exporting it
+//creating  Auth model as per schema and exporting it
 const mongoose=require('mongoose');
 const Schema=mongoose.Schema;
 

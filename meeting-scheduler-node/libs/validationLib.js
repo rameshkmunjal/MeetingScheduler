@@ -1,3 +1,5 @@
+//---------------------------------------------------------------------
+//function - to do validation of email using regex
 let Email=(email)=>{
     let emailRegex= /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if(email.match(emailRegex)) {
@@ -6,7 +8,8 @@ let Email=(email)=>{
         return false;
     }
 }
-
+//--------------------------------------------------------------------
+//function - to do validation of password using regex
 let Password=(password)=>{
     let passwordRegex= /^[A-Za-z0-9]\w{7,}$/ ;
     if(password.match(passwordRegex)){
@@ -15,8 +18,9 @@ let Password=(password)=>{
         return false;
     }
 }
-
+//----------------------------------------------------------------------
 module.exports={
     Email:Email,
     Password:Password
 }
+//-----------------------------------------------------------------------

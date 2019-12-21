@@ -51,7 +51,7 @@ export class ForgotPasswordFormComponent implements OnInit, OnDestroy {
         userName:this.username,
         email:this.email        
       }
-      this.appService.getBackPasswordFunction(data).subscribe(
+      this.appService.getOTP(data).subscribe(
         apiResponse=>{
           console.log(apiResponse);
           if(apiResponse.status===200){             

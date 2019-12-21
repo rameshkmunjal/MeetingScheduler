@@ -90,10 +90,12 @@ export class MonthlyComponent implements OnInit, OnDestroy {
     })
   }
   
-  //---------------------------------------------------------------------------
+  //----------------------------------------------------------------------------
 //display meeting of selected date - when a date cell of calendar is clicked 
 public  displayMeetingsOfSelectedDate(dt){
+  console.log(dt);
   this.selectedDate=dt;
+  console.log(this.selectedDate,  this.month, this.year, this.userID);
   this.router.navigate(['admin-dashboard/single-date', this.selectedDate,  this.month, this.year, this.userID]);      
 }
 //------------------------------------------------------------------------------------------------------------

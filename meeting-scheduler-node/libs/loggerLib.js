@@ -12,7 +12,7 @@ let captureError=(errorMessage, errorOrigin, errorLevel)=>{
         errorLevel:errorLevel
     }
 
-    //logger.error(errorResponse);
+    logger.error(errorResponse);
     return errorResponse;
 }
 

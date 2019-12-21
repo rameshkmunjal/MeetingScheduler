@@ -18,7 +18,7 @@ let isAuthrised=(req, res, next)=>{
                     let apiResponse=response.generate(true, "Failed in Authorization", 500, null);
                     res.send(apiResponse);
                 } else if(check.isEmpty(authDetails)){
-                    logger.error("No Authorization Key found", "isAuthorised function", 10);
+                    //logger.error("No Authorization Key found", "isAuthorised function", 10);
                     console.log("check auth key");
                     let apiResponse=response.generate(true, "No Authorization key is found", 404, null);
                     res.send(apiResponse);

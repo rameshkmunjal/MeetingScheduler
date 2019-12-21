@@ -64,8 +64,9 @@ export class SingleDateComponent implements OnInit, OnDestroy {
 //---
   public getSingleViewerMeetings(authToken, userId):any{
     this.meetingService.getSingleViewerMeetings(authToken, userId).subscribe(
-      apiResponse=>{ 
-        if(apiResponse===200){
+      apiResponse=>{
+        console.log(apiResponse); 
+        if(apiResponse.status===200){
           this.meetingArray=apiResponse.data;
           this.dailyCalendar=this.calendar.getDailyCalendar(); //to  get date wise calendar of year           
           let temp=this.calendar.getSelectedDayCalendar(this.dailyCalendar, this.date, this.month);//to get particular date calendar

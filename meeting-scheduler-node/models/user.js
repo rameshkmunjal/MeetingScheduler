@@ -1,4 +1,4 @@
-//creating UserSchema model as per schema and exporting it
+//creating  UserSchema model as per schema and exporting it
 const mongoose=require('mongoose');
 const Schema = mongoose.Schema;
 
