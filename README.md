@@ -43,60 +43,81 @@
 					vii) Admin should be able to delete a meeting as well.
 					viii) Meeting details should cover when , where and purpose.
 					ix) Admin name should appear in non-editable form.
+
 ## Synopsis:
-	FRONTEND:
-	1) We have created user management system having 3 pages - Signup , Login , Forgot Password.
-	2) In Signup page - we have used country code and names in user details.
-	3) Signup code ensures that normal users can not use admin in their username. 
-	4) Signp as admin is allowed only for role - AGM Controller and we have removed this option in second deployment.
-	5) In Forgot Password - an OTP is sent to user email address. Using this OTP , user can reset his password 
-	6) Admin Flow - has three menu items to navigate - Home , Meeting-List , Planner
-	7) As per project requirement - upon login admin lands at a page , having list of all normal users.
-	8) Upon clicking any user - he gets current month meeting calendar of that user, current day-cell selected by default.
-	9) If Admin clicks any meeting - he gets meetings details in form and he can update/delete it.
-   10) If Admin clicks any empty space in cell - he gets create meeting form and he can add a new meeting. 
-   11) When a normal user is logged in , he also get current month meeting calendar but he cannot make any addition/change.
-   12) When a meeting is created or edited - all users are informed through email and alert message is sent 
-       to all online users.
-   13) Planner view presents calendar in 3 formats - Day, Week , Month . All meetings of that period are shown in it.
-   14) Admin can navigate to previous/next month/week/day using left/right arrow keys.
-   15) A button to create new meeting is available on this page.
-   16) If a meeting is clicked - admin gets details of that meeting in non-editable form . He can use edit/delete buttons 
-		to edit or delete the meeting.
-   17) Some innovations have been made by us to make the site more useful - being explained as following.
-   18) In meeting details view - invitees button is given . Admin can view invitees/non-invitees of this meeting.
-   19) He can include/exclude any user in a meeting as per his requirement.
-   20) We have created a meeting list menu item. Where in all upcoming/previous meetings are given in one page.
-   
-   BACKEND:
-    1) Backend code is broadly divided in to two categories - user and meeting.
-	2) api call made by client are handled by files inside route folder- user and meeting. 
-	3) routes requiring authorisation - checked  by middleware whether authToken is present in the route or not. 
-	4) If a route is matched - function call is made and functions are defined in controller folder files 
-		- userController and meetingController.
-	5) To populate data in database mongoDB files -  following models have been created
-		user - to store user details
-		meeting - to store meeting details
-		auth - to store auth token details
-		invitation - to store invitation details
-		otp - to store otp details
-	6) Some library files have been created to assist controller functions as following -
-		checkLib - to validate string value
-		emailLib - to send email messages
-		generatePasswordLib - to generate/match hash password 
-		loggerLib - to log error/info
-		reponseLib - to design reponse object of apiresponse
-		redisLib - to detail redis functions
-		socketLib - to set up socket connection , to listen/emit socket events.
-		tokenLib - to generate/match auth token
-		validationLib - to validate inputs like email , password	
-	7) appConfig file in config folder defines configurations of app.
-	8) 
-	9) 
-   10) 
+
+#### FRONTEND:
+##### 1. User Management System
+**SignUp** , **Login**  & **Forgot Password** page try to capture all functionalities for a user to manage his account on the website
+
+User can fill in Personal Details on the SignUp page and create his account on the website post input validation. Country code is accepted as well as part of input. 
+
+##### 2. User Authorisation System
+User can use password based authorisation to access his account on the platform.
+
+Special Provision has been created for creating an admin user on platform. 
+
+**Forgot password** functionality is built using OTP dispatch functionality via SMTP (Google account).
+
+##### 3. User Slots Management System (Normal User)
+As per problem statement, upon login normal user is taken to a dashboard showing his current month's planned meetings in the form of a calendar with current day cell being selected. 
+
+##### 4. User Slots Management System (Admin User)
+Admin user is taken to a dashboard, showing all normal users in a list format.
+
+Upon clicking on any user, admin user is taken to user's current calendar with current date selected by default. 
+
+Admin can add a new meeting by clicking on empty space in a cell. 
+
+Meeting details for every user are saved in a database. 
+
+##### 5. User Alerts Management System 
+When any meeting is created or editted, all users are informed through email and an alert message is sent as well to all online users.
+
+An alert is sent to online customers 1 minute prior to meeting as well.
+
+##### 6. Planner Views
+Planner view presents calendar in 3 formats - Day, Week, Month. All meetings of that period are shown in it.
+
+Admin can navigate to previous/next month/week/day using left/right arrow keys.
+
+A button to create new meeting is available on this page.
+
+If a meeting is clicked - admin gets details of that meeting in non-editable form . He can use edit/delete buttons to edit or delete the meeting.
+
+##### 7. Innovations
+Some innovations to make the site more useful - being explained as following.
+
+   - In meeting details view - invitees button is given . Admin can view invitees/non-invitees of this meeting.
+   - He can include/exclude any user in a meeting as per his requirement.
+   - We have created a meeting list menu item. Where in all upcoming/previous meetings are given in one page.
+
+##BACKEND:
+#### Features
+1. Route Authorisation - Checked by Middleware for presence and validity.
+2. Routing is handled within user and meeting modules.
+3. Controllers to handle core functionality. 
+4. Following DB Models have been created : 
+	- 	user - To Store User Details
+	- 	meeting - To store Meeting Details
+	-	auth - To Store Auth Token Details
+	-	invitation - To Store Invitation Details
+	-	otp - To Store OTP Details
+5. Generic functionalities/utility methods have been built using libraries eg:
+	-		 checkLib - to validate string value
+	- 		emailLib - to send email messages
+	- 		generatePasswordLib - to generate/match hash password 
+	- 		loggerLib - to log error/info
+	- 		reponseLib - to design reponse object of apiresponse
+	- 		redisLib - to detail redis functions
+	- 		socketLib - to set up socket connection , to listen/emit socket events.
+	- 		tokenLib - to generate/match auth token
+	- 		validationLib - to validate inputs like email , password
+6. Configuration Details are contained in appConfig file
+
 
 ##Assumptions:
-	
+	Admin/Normal user have different privileges with respect to meeting creation and management
 	
 ## Technical Specifications:
 	Technologies used are as following-

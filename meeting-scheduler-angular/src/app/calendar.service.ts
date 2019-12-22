@@ -151,14 +151,23 @@ public appendMeetingData( mtgArr, newArr){
           let num=new Date(mtgArr[i].startDate).getMonth();
           let mtgMonth=this.months[num];
                         
-          if(mtgMonth==newArr[j].dayObj.month && mtgDate==newArr[j].dayObj.date && (startHour <= Number(newArr[j].hour) && (Number(newArr[j].hour) <= endHour && endMinute > 0))){            
-          
-            mtgArr[i].startHour=startHour;
-            mtgArr[i].endHour=endHour;
-            mtgArr[i].bgcolor=bgcolor;       
-            newArr[j].dayObj.mtgs.push(mtgArr[i]);             
-            console.log(newArr[j].dayObj.mtgs);  
-          }
+          if( mtgMonth==newArr[j].dayObj.month && 
+              mtgDate==newArr[j].dayObj.date){
+                if(startHour == Number(newArr[j].hour)){
+                    mtgArr[i].startHour=startHour;
+                    mtgArr[i].endHour=endHour;
+                    mtgArr[i].bgcolor=bgcolor;       
+                    newArr[j].dayObj.mtgs.push(mtgArr[i]);                        
+                    console.log(newArr[j].dayObj.mtgs);  
+                  } else if(startHour < Number(newArr[j].hour) && ( endHour >= Number(newArr[j].hour))) {
+                    mtgArr[i].startHour=startHour;
+                    mtgArr[i].endHour=endHour;        
+                    mtgArr[i].bgcolor=bgcolor;      
+                    newArr[j].dayObj.mtgs.push(mtgArr[i]);
+                  }
+
+              } 
+              
       }
   }
   //console.log(newArr);
