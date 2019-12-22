@@ -90,7 +90,7 @@ Some innovations to make the site more useful - being explained as following.
 
    - In meeting details view - invitees button is given . Admin can view invitees/non-invitees of this meeting.
    - He can include/exclude any user in a meeting as per his requirement.
-   - We have created a meeting list menu item. Where in all upcoming/previous meetings are given in one page.
+   - A meeting list menu item has been created in navigation bar. Where in all upcoming/previous meetings are given in one page.
 
 ##BACKEND:
 #### Features
@@ -121,7 +121,7 @@ Some innovations to make the site more useful - being explained as following.
 	
 ## Technical Specifications:
 	Technologies used are as following-
-	Frontend : HTML, CSS, Jquery, Javascript.
+	Frontend : HTML, CSS, Jquery, Javascript, Bootstrap
 	Bakcend : Nodejs,ExpressJS, Socket.IO 
 	Databases: MongoDB, Redis
 
