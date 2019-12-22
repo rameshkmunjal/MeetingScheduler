@@ -22,14 +22,15 @@
               <th>Fri</th>
               <th>Sat</th>
           </tr>
-
+          
           <tr *ngFor="let row of mtgData">
             <td class="mtg-cell" *ngFor="let cell of row " 
               [ngClass]="{'currentDate': cell.date == currentDate && currentMonth==month}"
               (click)="displayMeetingsOfSelectedDate(cell.date)"
               >
+                
                 <p>{{cell.date}}</p>                
-                <p class="mtgInfo" *ngFor="let mtg of cell.mtgs " (click)="showMeeting(mtg.id)">
+                <p class="mtg-bg"  *ngFor="let mtg of cell.mtgs | orderBy : {property :'startDate'} " (click)="showMeeting(mtg.id)">
                     <a style="color:black;" [routerLink]="['/admin-dashboard/single-meeting', mtg.id]" data-toggle="tooltip" data-placement="right" 
                       title={{mtg.startTime}}-{{mtg.endTime}}:{{mtg.subject}}>
                       {{mtg.startTime}}-{{mtg.endTime}} : {{mtg.subject}}

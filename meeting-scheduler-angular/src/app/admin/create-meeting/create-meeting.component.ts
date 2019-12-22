@@ -23,8 +23,8 @@ export class CreateMeetingComponent implements OnInit, OnDestroy {
   //variables to hold form input  - as per order in form
   public meetingName:String;  
   public meetingTime:String;
-  public day:String="Day";
-  public month:string="Month";
+  public day:string=JSON.stringify(new Date().getDate());
+  public month:string;
   public year:String ="2019";
   public starthour:String="Hours";
   public startminutes:String="Minutes";
@@ -58,7 +58,9 @@ export class CreateMeetingComponent implements OnInit, OnDestroy {
     this.adminMobile=this.appService.getUserInfoFromLocalstorage().mobileNumber;   
     //all months and hours - housed in array vars
     this.monthsArray=this.library.getMonths();    
-    this.hours=this.library.getHours();             
+    this.hours=this.library.getHours(); 
+    let i=new Date().getMonth(); 
+    this.month=this.monthsArray[i];           
   } 
 
   ngOnDestroy() {///destroy page - when exited

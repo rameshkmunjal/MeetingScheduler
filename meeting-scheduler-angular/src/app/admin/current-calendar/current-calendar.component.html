@@ -30,7 +30,7 @@
               (click)="createMeeting()"
               >
                 <p class="datePara">{{cell.date}}</p>                
-                <p class="mtgInfo" *ngFor="let mtg of cell.mtgs">
+                <p class="mtg-bg" *ngFor="let mtg of cell.mtgs">
                     <a style="color:black;" [routerLink]="['/admin-dashboard/single-meeting', mtg.id]" data-toggle="tooltip" data-placement="right" 
                     title={{mtg.startTime}}-{{mtg.endTime}}:{{mtg.subject}}>
                       {{mtg.startTime}}-{{mtg.endTime}}:{{mtg.subject}}

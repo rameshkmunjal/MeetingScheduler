@@ -27,11 +27,12 @@
         <td class="contents-cell">        
           <div *ngIf="mtg.dayObj.mtgs.length > 0">
             <p style="display:inline;" *ngFor="let m of mtg.dayObj.mtgs">              
-                <a class="mtgInfo fs-75 mr-100" [routerLink]="['/admin-dashboard/single-meeting', m.id]" 
-                data-toggle="tooltip" data-placement="right" 
-                title={{m.startTime}}-{{m.endTime}}{{m.subject}}>
-                {{m.startTime}}-{{m.endTime}}{{m.subject}} {{mtg.hour}}
-            </a>                
+                <a class="mtgInfo fs-75 mr-100 text-white" [ngStyle]="{'background': m.bgcolor}"
+                  [routerLink]="['/admin-dashboard/single-meeting', m.id]" 
+                  data-toggle="tooltip" data-placement="right" 
+                  title={{m.startTime}}-{{m.endTime}}{{m.subject}}>
+                  {{m.startTime}}-{{m.endTime}}{{m.subject}}
+              </a>                
             </p>
           </div>
                            

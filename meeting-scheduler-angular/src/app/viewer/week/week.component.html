@@ -11,8 +11,8 @@
   <tr *ngIf="datesArray.length > 0">
     <th class="tbl-th">Hour</th>    
     <th class="tbl-th" *ngFor="let day of datesArray" 
-    [ngClass]="{'currentDate': day.date == currentDate && day.month==currentMonth}"
-    (click)="displayMeetingsOfSelectedDate(day.date)">
+      [ngClass]="{'currentDate': day.date == currentDate && day.month==currentMonth}"
+      (click)="displayMeetingsOfSelectedDate(day.date)">
       <p>{{day.day}}</p>
       <p>{{day.date}}</p>
     </th>
@@ -22,7 +22,7 @@
     
     <td *ngFor="let mtgs of day.weekObj">
       <div *ngIf="mtgs.mtgs.length > 0">
-        <p class="mtgInfo" *ngFor="let mtg of mtgs.mtgs">
+        <p class="mtg-bg" *ngFor="let mtg of mtgs.mtgs">
           <a style="color:black;"  data-toggle="tooltip" data-placement="right" 
                   title={{mtg.startTime}}-{{mtg.endTime}}:{{mtg.subject}}>
                 {{mtg.startTime}}-{{mtg.endTime}}: {{mtg.subject}}

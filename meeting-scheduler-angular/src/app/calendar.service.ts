@@ -131,17 +131,32 @@ public add24Objects(dayObj){
 //--------------------------------------------------------------------------------------------------------
 //function - to add meeting data in a day calendar
 public appendMeetingData( mtgArr, newArr){
+  let colors=[
+     "green", "pink", "orange", "crimson",
+     "lightseagreen", "blue", "red", "black", 
+     "grey", "darkslategray", "darkgray", "indigo",
+     "purple", "darkmagenta", "darkorchid", "darkviolet",
+     "darkred", "firebrick", "deeppink", "orangered",
+     "darkkhaki", "magenta", "blueviolet", "limegreen",
+     "forestgreen", "darkgreen"
+    ]
   for(let i=0; i < mtgArr.length; i++){           
       for(let j=0; j < newArr.length; j++){
-          let mtgHour=new Date(mtgArr[i].startDate).getHours();      
+          let startHour=new Date(mtgArr[i].startDate).getHours();
+          let endMinute = new Date(mtgArr[i].endDate).getMinutes();
+          let endHour= new Date(mtgArr[i].endDate).getHours(); 
+          let index=Math.floor(Math.random()*(colors.length-1))+1;
+          let bgcolor=colors[index];    
           let mtgDate=new Date(mtgArr[i].startDate).getDate();
           let num=new Date(mtgArr[i].startDate).getMonth();
           let mtgMonth=this.months[num];
-          console.log(mtgHour + " : "+ mtgDate+ " : "+mtgMonth); 
-                    
-          if(mtgMonth==newArr[j].dayObj.month && mtgDate==newArr[j].dayObj.date && mtgHour==Number(newArr[j].hour)){            
-          //  console.log("Matched");        
-            newArr[j].dayObj.mtgs.push(mtgArr[i]); 
+                        
+          if(mtgMonth==newArr[j].dayObj.month && mtgDate==newArr[j].dayObj.date && (startHour <= Number(newArr[j].hour) && (Number(newArr[j].hour) <= endHour && endMinute > 0))){            
+          
+            mtgArr[i].startHour=startHour;
+            mtgArr[i].endHour=endHour;
+            mtgArr[i].bgcolor=bgcolor;       
+            newArr[j].dayObj.mtgs.push(mtgArr[i]);             
             console.log(newArr[j].dayObj.mtgs);  
           }
       }

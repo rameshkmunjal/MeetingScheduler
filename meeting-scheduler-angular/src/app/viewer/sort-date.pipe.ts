@@ -1,10 +1,9 @@
-//order by pipe
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'orderBy'
+  name: 'sortDate'
 })
-export class OrderByPipe implements PipeTransform {
+export class SortDatePipe implements PipeTransform {
 
   transform(records: Array<any>, args?: any): any {
     if(!records || records.length<=0){

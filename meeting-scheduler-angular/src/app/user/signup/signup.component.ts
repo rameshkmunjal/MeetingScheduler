@@ -16,7 +16,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   //Arrays declared/defined
   public countryCodeList:any=[];//to hold country codes , names etc
   public rolesList:any=[ //roles of user in organisation
-    "Branch-Staff", "Branch-Manager", "AGM-Branch", "Region-Staff", "AGM-Controller"
+    "Branch-Staff", "Branch-Manager", "AGM-Branch", "Region-Staff"
   ];  
   //to hold and show error message
   public errorMessage:string;

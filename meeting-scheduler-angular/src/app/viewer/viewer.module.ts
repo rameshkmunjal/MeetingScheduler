@@ -9,6 +9,7 @@ import { MonthComponent } from './month/month.component';
 import { DayComponent } from './day/day.component';
 import { ViewerHeaderComponent } from './viewer-header/viewer-header.component';
 import { SingleDayComponent } from './single-day/single-day.component';
+import { SortDatePipe } from './sort-date.pipe';
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import { SingleDayComponent } from './single-day/single-day.component';
     MonthComponent, 
     DayComponent, 
     ViewerHeaderComponent, 
-    SingleDayComponent
+    SingleDayComponent, SortDatePipe
   ]
 })
 export class ViewerModule { }

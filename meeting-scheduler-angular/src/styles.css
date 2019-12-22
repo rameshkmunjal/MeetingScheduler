@@ -66,8 +66,7 @@
   }
   
   .currentDate{
-    color:white;
-    font-weight:bold;  
+    color:white;      
     background:rgb(4, 124, 118);
   }
   .tbl-th{
@@ -185,19 +184,20 @@ label{
   border:1px solid black; 
   padding:10px 20px;
 }
-
 /*-------------------------------------------------------------------------------------*/
 .mtg-cell{
 	padding:0px !important;
 }
+.mtg-bg{
+  background:lightskyblue;
+  padding:2px;
+}
 .mtgInfo{
-	 background:lightgrey; 
-   color:black;
+	 padding:2px;
    word-wrap:break-word;    
    overflow: hidden;
    text-overflow: ellipsis; 
-   border-bottom: 1px solid #777;   
-   
+   border-bottom: 1px solid #777;  
 }
 
 .mr-100{  
