@@ -1,40 +1,37 @@
 <!----------------to go to previos  page--------------------->
 <div class="col-md-10 offset-md-2 d-flex justify-content-start">
-    <a (click)="goBack()" class="btn"><b>Go Back</b></a> 
+    <a class="pointerBtn" (click)="goBack()"><b>Go Back</b></a> 
   </div>
 <!----------------------------showing details of single meeting selected--------------------------->
 <div class="col-md-4 offset-md-4">
-    <form *ngIf="currentMeeting">
-        <div class="container">
-            <a class="invitee-link pull-right" (click)="seeInvitees(currentMeeting.meetingId)" >See Invitees</a>
-        </div>
+    <form *ngIf="currentMeeting">        
       <h1 class="text-center text-white">Details</h1>            
         <label for="subject" style="color:white">Subject</label>
-        <input class="form-control" value={{currentMeeting.meetingName}} />
+        <input class="form-control" value={{currentMeeting.meetingName}} readonly/>
         <label for="date" style="color:white">Date</label>
-        <input class="form-control" value={{mtgDate}} />
+        <input class="form-control" value={{mtgDate}} readonly />
         <div class="box d-flex justify-content-between">
           <div class="half-box">
               <label for="time" style="color:white">Start Time</label>
-              <input class="form-control" value={{currentMeeting.startTime}} />
+              <input class="form-control" value={{currentMeeting.startTime}} readonly />
           </div>
           <div class="half-box">
               <label for="time" style="color:white">End Time</label>
-              <input class="form-control" value={{currentMeeting.endTime}} />
+              <input class="form-control" value={{currentMeeting.endTime}} readonly/>
           </div>
         </div>   
         
         <label for="venue" style="color:white">Venue</label>
-        <input class="form-control" value={{currentMeeting.meetingVenue}} />
+        <input class="form-control" value={{currentMeeting.meetingVenue}} readonly/>
 
         <div class="box d-flex justify-content-between">
           <div class="half-box">
               <label for="convenor" style="color:white">Convenor</label>
-              <input class="form-control" value={{fullName}} />
+              <input class="form-control" value={{fullName}}  readonly/>
           </div>
           <div class="half-box">
               <label for="mobile" style="color:white">Mobile</label>
-              <input class="form-control" value={{currentMeeting.convenorMobile}} />            
+              <input class="form-control" value={{currentMeeting.convenorMobile}} readonly/>            
             </div>
         </div>
 
@@ -42,6 +39,9 @@
             <div class="half-box d-flex justify-content-center">
                 <button class="red-btn" [routerLink]="['/admin-dashboard/delete', currentMeeting.meetingId]">Delete</button>           
             </div>
+            <div class="half-box d-flex justify-content-center">
+                    <button class="blue-btn" (click)="seeInvitees(currentMeeting.meetingId)">Invitees</button>           
+                </div>
             <div class="half-box d-flex justify-content-center">
                 <button class="green-btn" [routerLink]="['/admin-dashboard/edit', currentMeeting.meetingId]"> Edit</button>  
             </div>

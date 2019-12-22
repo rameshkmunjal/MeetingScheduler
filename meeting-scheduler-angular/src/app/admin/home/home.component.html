@@ -1,9 +1,7 @@
 <!---------------------------------------home component  starts here--------------------------------> 
     <div class="col-md-12 col-xs-12 pt-3 px-4">       
         <h2 class="heading text-center">Admin Dashboard</h2>
-        <div *ngIf="errorMessage">
-          <p class="error-message">{{errorMessage}}</p>
-        </div>
+        
       <!----table showing user list --> 
         <table class="tbl  table-hover text-center mb-3" *ngIf="viewerList.length > 0">
           <tr>

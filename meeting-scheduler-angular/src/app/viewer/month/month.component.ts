@@ -21,6 +21,7 @@ export class MonthComponent implements OnInit, OnDestroy {
   public month:string; //month name    
   public currentDate:Number=new Date().getDate();//current date 
   public year:String='2019'; //constant value
+  public selectedDate:number=1;
 
   public meetingArray:any=[]; //holding all meetings 
   public monthlyCalendar:any=[];//calendar of a month
@@ -28,8 +29,8 @@ export class MonthComponent implements OnInit, OnDestroy {
   public monthArray:any=[];//will hold array of month names
   public hours:any=[];//will hold array of 24b hours
   
-  constructor(
-    private _route:ActivatedRoute,
+  constructor( 
+    private _route:ActivatedRoute,   
     private router:Router,
     private meetingService:MeetingService,
     private appService:AppService,
@@ -37,7 +38,7 @@ export class MonthComponent implements OnInit, OnDestroy {
     private calendar:CalendarService 
   ) {}
 
-  ngOnInit() {
+  ngOnInit() {    
     this.authToken=(this.appService.getUserInfoFromLocalstorage()).authToken;
     this.monthArray=this.library.getMonths();
     this.hours=this.library.getHours();
@@ -66,12 +67,7 @@ export class MonthComponent implements OnInit, OnDestroy {
         console.log(error);
       }
     )
-  }
-  
-  //--------------------------------------------------------------------------
-
-  
-
+  }  
 //------------------------------------------------------------------------------------------------------------
   //When left arrow is clicked
   public getPreviousMonth(){    
@@ -105,13 +101,15 @@ export class MonthComponent implements OnInit, OnDestroy {
     this.mtgData=this.calendar.make5Weeks(this.mtgData);            
   }
 
-//No change if monthly button clicked
-  public showMonthlyCalendar(){
-    return false;
-  }
-  //---------------------------------------------------------------------------------
-  
+//----------------------------------------------------------------------------
+//display meeting of selected date - when a date cell of calendar is clicked 
+public  displayMeetingsOfSelectedDate(dt){
+  console.log(dt);
+  this.selectedDate=dt;
+  console.log(this.selectedDate,  this.month, this.year, this.userID);
+  this.router.navigate(['/single-day', this.selectedDate,  this.month, this.year, this.userID]);      
+}
+  //---------------------------------------------------------------------------------  
   //class definition ended 
-
 }
 

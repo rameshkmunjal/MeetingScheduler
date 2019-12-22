@@ -1,22 +1,23 @@
 <!---------------------dropdown to select monthly/weekly/daily view starts------------------->
 <div class="pb-3" *ngIf="startDate">
   <div class="col-md-4 fs-150 d-flex justify-content-center">
-    <span><i class="fa fa-arrow-left pr-3" (click)="getPreviousWeek()"></i></span> 
+    <span><i class="fa fa-arrow-left pr-3 pointerBtn" (click)="getPreviousWeek()"></i></span> 
     <span>{{startDate}} {{startDateMonth}} - {{endDate}} {{endDateMonth}} 2019</span>                  
-    <span><i class="fa fa-arrow-right pl-3" (click)="getNextWeek()"></i></span>
+    <span><i class="fa fa-arrow-right pl-3 pointerBtn" (click)="getNextWeek()"></i></span>
   </div>
 </div>  
-  <!------------------week choice container ends---------------------------->
+  <!------------------ week choice container ends---------------------------->
   <!------------------table showing calendar view of week starts------------>  
   <table class="tbl table-hover text-center" *ngIf="currentWeek.length > 0">
-  <tr *ngIf="days.length > 0">
-    <th>Hour</th>
-    <th *ngFor="let day of days"><p>{{day}}</p></th>
-  </tr>
-  <tr *ngIf="datesArray.length > 0">
-    <th></th>
-    <th *ngFor="let day of datesArray" ><p (click)="displayMeetingsOfSelectedDate(day.date)">{{day.date}}</p></th>
-  </tr>
+      <tr *ngIf="datesArray.length > 0">
+          <th class="tbl-th">Hour</th>    
+          <th class="tbl-th" *ngFor="let day of datesArray" 
+          [ngClass]="{'currentDate': day.date==currentDate && day.month==currentMonth}"
+          (click)="displayMeetingsOfSelectedDate(day.date)">
+            <p>{{day.day}}</p>
+            <p>{{day.date}}</p>
+          </th>
+      </tr>
   <tr *ngFor="let day of currentWeek" >
     <!---->
     <td >{{day.hour}}</td>    

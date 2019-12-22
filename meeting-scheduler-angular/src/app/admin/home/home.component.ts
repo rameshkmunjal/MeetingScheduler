@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.appService.getViewerList(authToken).subscribe(
       apiResponse=>{        
         this.viewerList=apiResponse.data;        
-      }, error=>{   //showing error message          
+      }, error=>{   // showing error message          
         if(error.error.message){            
           let errorMessage=error.error.message;
           let errorCode=error.status;

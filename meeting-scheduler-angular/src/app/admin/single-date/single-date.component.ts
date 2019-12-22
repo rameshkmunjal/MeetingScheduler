@@ -73,6 +73,7 @@ export class SingleDateComponent implements OnInit, OnDestroy {
           this.dayNumber=temp.dayIndex; 
           let tempCal=this.calendar.add24Objects(temp);
           this.mtgData=this.calendar.appendMeetingData(this.meetingArray, tempCal);
+          console.log(this.mtgData);
         } else {
           console.log(apiResponse);
           this.toastr.error(apiResponse.message);

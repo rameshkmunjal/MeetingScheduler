@@ -16,7 +16,7 @@ import {ToastrService} from 'ngx-toastr';
 })
 export class WeeklyComponent implements OnInit, OnDestroy {
   @Input() userID:string;//to get from parent component
-  public authToken:String; //to send with api call
+  public authToken:String; //to send with api call  
 
   public date:number=new Date().getDate(); //current date  
   public monthIndex:number=new Date().getMonth(); //index position of current month  
@@ -24,6 +24,7 @@ export class WeeklyComponent implements OnInit, OnDestroy {
   public weekIndex:any;//index position of week in calendar
    
   public currentDate:Number=new Date().getDate();//current date
+  public currentMonth:string;
   public selectedDate:Number=1;
   public year:String='2019'; //constant value
 //to hold dates/months  of week
@@ -57,10 +58,14 @@ export class WeeklyComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.authToken=(this.appService.getUserInfoFromLocalstorage()).authToken;
+    
     this.months=this.library.getMonths();   //populating with month names 
     this.hours=this.library.getHours(); //populating with hours 0-23
     this.days=this.library.getWeekDays(); //population with week days
     this.month=this.months[this.monthIndex]; //month name on given index position
+    let tempIndex=new Date().getMonth();
+    this.currentMonth=this.months[tempIndex];
+    console.log(this.currentDate+" : "+this.currentMonth);
     
     //api call to get monthly calendar
     this.getSingleViewerMeetings(this.authToken, this.userID);

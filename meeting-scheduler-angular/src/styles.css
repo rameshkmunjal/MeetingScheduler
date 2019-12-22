@@ -64,9 +64,14 @@
     color:white;
     font-weight:bold;
   }
+  
   .currentDate{
-    color:red;
-    font-weight:bold;
+    color:white;
+    font-weight:bold;  
+    background:rgb(4, 124, 118);
+  }
+  .tbl-th{
+    background:lightseagreen;
   }
 
 /*---classes for font-sizes*/
@@ -126,6 +131,9 @@ label{
 }
 /*---------------------------------------------------------------------------------*/
 /*---classes for buttons*/
+.pointerBtn{
+  cursor:pointer;
+}
 .submitBtn{
   background:white; 
   font-weight:bold; 
@@ -135,15 +143,15 @@ label{
   font-weight:bold;
 }
 .red-btn{
-  background:red; 
-  color:white;
-  width:6.0rem;
-  height:2.0rem;
-  text-align:center;
-  border:none;
+  background:red;  
 }
 .green-btn{
-  background:green; 
+  background:green;  
+}
+.blue-btn{
+  background:blue;  
+}
+.red-btn, .green-btn, .blue-btn{   
   color:white;
   width:6.0rem;
   height:2.0rem;
@@ -161,13 +169,14 @@ label{
 	color:white;
 	font-weight:bold;
 }
-/*---buttons for navigation with in page---*/
+/*---buttons for navigation with in page ---*/
 .headerBtn{
   background:white;
   color:black;
   font-weight:bold;
   border:1px solid black; 
   padding:10px 20px;
+  cursor: pointer;
 }
 .activeBtn{
   background:black;
@@ -182,9 +191,9 @@ label{
 	padding:0px !important;
 }
 .mtgInfo{
-	 background:coral; 
+	 background:lightgrey; 
    color:black;
-   word-wrap:breack-word;    
+   word-wrap:break-word;    
    overflow: hidden;
    text-overflow: ellipsis; 
    border-bottom: 1px solid #777;   

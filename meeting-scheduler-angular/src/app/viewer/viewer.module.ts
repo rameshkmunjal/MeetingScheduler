@@ -8,13 +8,16 @@ import { WeekComponent } from './week/week.component';
 import { MonthComponent } from './month/month.component';
 import { DayComponent } from './day/day.component';
 import { ViewerHeaderComponent } from './viewer-header/viewer-header.component';
+import { SingleDayComponent } from './single-day/single-day.component';
 
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forRoot([      
-      {path:'viewer-dashboard/:userId', component:ViewerDashboardComponent}    
+      {path:'viewer-dashboard/:userId', component:ViewerDashboardComponent} ,
+      {path:'single-day/:day/:month/:year/:userId', component:SingleDayComponent} 
+
     ])
   ],
   declarations: [
@@ -22,7 +25,8 @@ import { ViewerHeaderComponent } from './viewer-header/viewer-header.component';
     WeekComponent, 
     MonthComponent, 
     DayComponent, 
-    ViewerHeaderComponent
+    ViewerHeaderComponent, 
+    SingleDayComponent
   ]
 })
 export class ViewerModule { }

@@ -6,7 +6,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav ml-auto">
         <li class="nav-item">
             <a class="nav-link" [routerLink]="['/login']">Login</a>
         </li>            
@@ -26,17 +26,17 @@
 
           <div class="mt-4 mb-4 d-flex justify-content-between">
             <div class="half-size-box">                
-                <input type="text" name="firstName" class="form-control" [(ngModel)]="firstName" placeholder="first name..." />
+                <input type="text" name="firstName" class="form-control" [(ngModel)]="firstName" placeholder="First name..." />
             </div>
               
             <div  class="half-size-box">                        
-                <input type="text" name="lastName" class="form-control" [(ngModel)]="lastName" placeholder="lastName" />
+                <input type="text" name="lastName" class="form-control" [(ngModel)]="lastName" placeholder="LastName" />
             </div>                            
           </div>
 
           <div class="mt-4 mb-4 d-flex justify-content-between">
               <div class="half-size-box">                
-                  <input type="text" name="username" class="form-control" [(ngModel)]="username" placeholder="username" />
+                  <input type="text" name="username" class="form-control" [(ngModel)]="username" placeholder="Username" />
               </div>
                 
               <div  class="half-size-box" *ngIf="rolesList.length > 0">
@@ -50,10 +50,10 @@
                                
           <div class="d-flex justify-content-between">
             <div class="half-size-box">                
-                <input type="text" name="email" class="form-control" [(ngModel)]="email" placeholder="email" />
+                <input type="text" name="email" class="form-control" [(ngModel)]="email" placeholder="E-mail" />
             </div>
             <div class="half-size-box">                        
-                <input type="password" name="password" class="form-control" [(ngModel)]="password" placeholder="password" />
+                <input type="password" name="password" class="form-control" [(ngModel)]="password" placeholder="Password" />
             </div>
           </div>
 
@@ -63,7 +63,7 @@
               <option *ngFor="let item of countryCodeList">{{item.name}}</option>
             </select>
             <input id="country-code" type="text" name="countryCode" class="form-control" [(ngModel)]="countryCode" placeholder="Country Code" />
-            <input id="mobile-input" type="text" name="mobileNumber" class="form-control" [(ngModel)]="mobileNumber" placeholder="mobileNumber" />                              
+            <input id="mobile-input" type="text" name="mobileNumber" class="form-control" [(ngModel)]="mobileNumber" placeholder="Mobile Number" />                              
            </div>
           
            <div class="text-center">

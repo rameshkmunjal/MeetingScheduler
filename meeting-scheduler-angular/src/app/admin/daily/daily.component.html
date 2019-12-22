@@ -1,15 +1,15 @@
 <!---------------------------------date arrow keys code starts here------------------------------------>  
 <div class="col-md-10 offset-md-2 fs-150 text-center d-flex justify-content-start pb-3"> 
-  <span><i class="fa fa-arrow-left pr-3" (click)="getPreviousDay()"></i></span> 
+  <span><i class="fa fa-arrow-left pr-3 pointerBtn" (click)="getPreviousDay()"></i></span> 
   <span>{{date}} {{month}} {{year}}</span>                   
-  <span><i class="fa fa-arrow-right pl-3" (click)="getNextDay()"></i></span>        
+  <span><i class="fa fa-arrow-right pl-3 pointerBtn" (click)="getNextDay()"></i></span>        
 </div>
 <!-----------------------------------date arrow keys code ends here------------------------------------> 
 <!-----------------------------------table starts here----------------------------------------------->
 <table class="tbl table-hover text-center " *ngIf="mtgData.length > 0">
   <tr>
     <th class="hour-cell">Hour</th>
-    <th>Meetings</th>
+    <th class="tbl-th">Meetings</th>
   </tr>
   <tr *ngFor="let mtg of mtgData">
     <td class="hour-cell">{{mtg.hour}}</td>

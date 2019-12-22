@@ -15,7 +15,7 @@
 <div class="row d-flex justify-content-center">
   <div class="col-xs-12 col-md-12" id="calendar">      
       <table *ngIf="mtgData.length > 0" class="tbl  table-hover text-center mb-3">
-          <tr>
+          <tr class="tbl-th">
               <th>Sun</th>
               <th>Mon</th>
               <th>Tue</th>
@@ -25,7 +25,9 @@
               <th>Sat</th>
           </tr>
           <tr *ngFor="let row of mtgData">
-              <td style="padding:1vh 2vw" *ngFor="let cell of row ">
+              <td class="mtg-cell" *ngFor="let cell of row " 
+              [ngClass]="{'currentDate': cell.date == currentDate && currentMonth==month}"
+              (click)="displayMeetingsOfSelectedDate(cell.date)">
                 <p>{{cell.date}}</p>                
                   <p class="mtgInfo" *ngFor="let mtg of cell.mtgs">
                       <a style="color:black;"  data-toggle="tooltip" data-placement="right" 

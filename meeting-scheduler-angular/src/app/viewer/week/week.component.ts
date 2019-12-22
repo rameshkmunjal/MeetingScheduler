@@ -40,6 +40,7 @@ export class WeekComponent implements OnInit, OnDestroy {
 
   public selectedDate:number=1;  
   public currentDate:Number=new Date().getDate();
+  public currentMonth:string;
 
   public year:String='2019';  
   public mtgsOfSelectedDate:any=[];
@@ -58,6 +59,8 @@ export class WeekComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.authToken=(this.appService.getUserInfoFromLocalstorage()).authToken;
+    let tempIndex=new Date().getMonth();
+    this.currentMonth=this.months[tempIndex];
     this.monthArray=this.library.getMonths();
     this.hours=this.library.getHours();
     this.days=this.library.getWeekDays();
@@ -88,11 +91,20 @@ export class WeekComponent implements OnInit, OnDestroy {
         this.weeklyArr=this.calendar.make24Objects(this.currentWeek);
         this.currentWeek=this.calendar.fillMeetingData(this.meetingArray, this.weeklyArr);
         this.datesArray=this.currentWeek[0].weekObj;
+        console.log(this.datesArray);
       }, (err)=>{
         console.log(err);
       }
     )
   }
+//----------------------------------------------------------------------------
+//display meeting of selected date - when a date cell of calendar is clicked 
+public  displayMeetingsOfSelectedDate(dt){
+  console.log(dt);
+  this.selectedDate=dt;
+  console.log(this.selectedDate,  this.month, this.year, this.userID);
+  this.router.navigate(['/single-day', this.selectedDate,  this.month, this.year, this.userID]);      
+}
 
   
 //--------------------These two functions will work with side arrow keys of page-----------------------------

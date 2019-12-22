@@ -8,13 +8,14 @@
 <!----------week choice container ends------>
 <!------------------table showing calendar view of week starts------------>
 <table class="tbl table-hover text-center" *ngIf="currentWeek.length > 0">
-  <tr *ngIf="days.length > 0">
-    <th>Hour</th>
-    <th *ngFor="let day of days"><p>{{day}}</p></th>
-  </tr>
   <tr *ngIf="datesArray.length > 0">
-    <th></th>
-    <th *ngFor="let day of datesArray"><p>{{day.date}}</p></th>
+    <th class="tbl-th">Hour</th>    
+    <th class="tbl-th" *ngFor="let day of datesArray" 
+    [ngClass]="{'currentDate': day.date == currentDate && day.month==currentMonth}"
+    (click)="displayMeetingsOfSelectedDate(day.date)">
+      <p>{{day.day}}</p>
+      <p>{{day.date}}</p>
+    </th>
   </tr>
   <tr *ngFor="let day of currentWeek">
     <td >{{day.hour}}</td>

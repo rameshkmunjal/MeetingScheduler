@@ -26,10 +26,10 @@ export class SignupComponent implements OnInit, OnDestroy {
   public username:any; 
   public email:string;
   public password:string;
-  public role:string="Role";
+  public role:string="Branch-Staff";
   public mobileNumber:number;
-  public country:String="Country"; 
-  public countryCode:string="Code"; 
+  public country:String="India"; 
+  public countryCode:string="91"; 
 
   constructor(
     private appService:AppService,

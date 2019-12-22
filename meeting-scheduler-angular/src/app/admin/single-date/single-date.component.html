@@ -7,11 +7,11 @@
     <span>{{date}} {{month}} {{year}}</span>
 </div>
 <!-----------------------------------date arrow keys code ends here------------------------------------> 
-<!-----------------------------------table starts here----------------------------------------------->
+<!------------------------------------table starts here----------------------------------------------->
   <table class="tbl table-hover text-center " *ngIf="mtgData.length > 0">
     <tr>
       <th class="hour-cell">Hour</th>
-      <th>Meetings</th>
+      <th class="tbl-th">Meetings</th>
     </tr>
   
     <tr *ngFor="let mtg of mtgData">
@@ -19,12 +19,12 @@
         
       <td class="contents-cell">        
         <div *ngIf="mtg.dayObj.mtgs.length > 0">
-          <p style="display:inline;" *ngFor="let mtg of mtg.dayObj.mtgs">              
-              <a class="mtgInfo fs-75 mr-100" [routerLink]="['/admin-dashboard/single-meeting', mtg.id]" 
+          <p style="display:inline;" *ngFor="let m of mtg.dayObj.mtgs">              
+              <a class="mtgInfo fs-75 mr-100" [routerLink]="['/admin-dashboard/single-meeting', m.id]" 
               data-toggle="tooltip" data-placement="right" 
-              title={{mtg.startTime}}-{{mtg.endTime}}{{mtg.subject}}>
-              {{mtg.startTime}}-{{mtg.endTime}}{{mtg.subject}}
-          </a>                
+              title={{m.startTime}}-{{m.endTime}}{{m.subject}}>
+              {{m.startTime}}-{{m.endTime}}{{m.subject}} {{mtg.hour}}
+              </a>                
           </p>
         </div>
                          
