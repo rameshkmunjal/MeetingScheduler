@@ -1,0 +1,52 @@
+<!------------------------collapsible navbar starts here------------------------------------------>
+<nav class="navbar navbar-expand-md navbar-dark">    
+    <a class="navbar-brand" [routerLink]="['/viewer-dashboard', userId]">ABC Ltd</a><span class="text-white">Welcome : {{fullName}}</span>         
+    <a class="nav-link ml-auto" [routerLink]="['/logout', userId]">Logout</a>        
+</nav>
+<!-------------------------------------navbar ends here----------------------------------->
+<div class="container-fluid main">
+<div class="col-md-10 offset-md-2 d-flex justify-content-start">
+    <a (click)="goBack()" class="btn"><b>Go Back</b></a> 
+  </div>
+  <!---------------------------------date arrow keys code starts here----------------------------------->  
+  <div class="container fs-150 text-center pt-3 pb-3"> 
+      <span>Meeting Date : </span> 
+      <span>{{date}} {{month}} {{year}}</span>
+  </div>
+  <!-----------------------------------date arrow keys code ends here------------------------------------> 
+  <!------------------------------------table starts here----------------------------------------------->
+    <table class="tbl table-hover text-center " *ngIf="mtgData.length > 0">
+      <tr>
+        <th class="hour-cell">Hour</th>
+        <th>Meetings</th>
+      </tr>
+    
+      <tr *ngFor="let mtg of mtgData">
+        <td class="hour-cell">{{mtg.hour}}</td>
+          
+        <td class="contents-cell">        
+          <div *ngIf="mtg.dayObj.mtgs.length > 0">
+            <p style="display:inline;" *ngFor="let m of mtg.dayObj.mtgs">              
+                <a class="mtgInfo fs-75 mr-100" [routerLink]="['/admin-dashboard/single-meeting', m.id]" 
+                data-toggle="tooltip" data-placement="right" 
+                title={{m.startTime}}-{{m.endTime}}{{m.subject}}>
+                {{m.startTime}}-{{m.endTime}}{{m.subject}} {{mtg.hour}}
+            </a>                
+            </p>
+          </div>
+                           
+        </td>
+      </tr>
+    </table>
+    
+    <!-------------------------------------table ends here----------------------------------------------->
+    <div class="pb-3">
+      
+    </div>
+  </div> 
+  <!----------------------------footer container starts here--------------------------------> 
+<div class=" container-fluid  footer  text-white text-center pt-2">
+    <p class="pb-2">@Ramesh Kumar Munjal</p>
+</div>
+<!--------------------------------footer ends here----------------------------------------> 
+        
