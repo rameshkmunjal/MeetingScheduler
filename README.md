@@ -104,15 +104,15 @@ Some innovations to make the site more useful - being explained as following.
 	-	invitation - To Store Invitation Details
 	-	otp - To Store OTP Details
 5. Generic functionalities/utility methods have been built using libraries eg:
-	-		 checkLib - to validate string value
-	- 		emailLib - to send email messages
-	- 		generatePasswordLib - to generate/match hash password 
-	- 		loggerLib - to log error/info
-	- 		reponseLib - to design reponse object of apiresponse
-	- 		redisLib - to detail redis functions
-	- 		socketLib - to set up socket connection , to listen/emit socket events.
-	- 		tokenLib - to generate/match auth token
-	- 		validationLib - to validate inputs like email , password
+	-	checkLib - to validate string value
+	- 	emailLib - to send email messages
+	- 	generatePasswordLib - to generate/match hash password 
+	- 	loggerLib - to log error/info
+	- 	reponseLib - to design reponse object of apiresponse
+	- 	redisLib - to detail redis functions
+	- 	socketLib - to set up socket connection , to listen/emit socket events.
+	- 	tokenLib - to generate/match auth token
+	- 	validationLib - to validate inputs like email , password
 6. Configuration Details are contained in appConfig file
 
 
@@ -130,7 +130,8 @@ Some innovations to make the site more useful - being explained as following.
     	Complete code of this api has been uploaded to my github page and address is :
  
 		https://github.com/rameshkmunjal/MeetingScheduler
-
+		
+		Website Address: meet.bestbuddy.io
 	
 ## Contributors:
 
