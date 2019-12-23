@@ -23,14 +23,13 @@
     <td >{{day.hour}}</td>    
     <td *ngFor="let mtgs of day.weekObj" >
       <div *ngIf="mtgs.mtgs.length > 0">
-        <p class="mtg-bg" *ngFor="let mtg of mtgs.mtgs" >
-                   
+        <p class="mtg-bg" *ngFor="let mtg of mtgs.mtgs" >                   
           <a style="color:black;" [routerLink]="['/admin-dashboard/single-meeting', mtg.id]" 
               data-toggle="tooltip" data-placement="right" 
               title={{mtg.startTime}}-{{mtg.endTime}}:{{mtg.subject}}>
               {{mtg.startTime}}-{{mtg.endTime}} : {{mtg.subject}}
           </a>                
-      </p>
+        </p>
       </div>
     </td>       
   </tr>

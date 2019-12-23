@@ -24,10 +24,9 @@
           </tr>
           
           <tr *ngFor="let row of mtgData">
-            <td class="mtg-cell" *ngFor="let cell of row " 
+            <td  *ngFor="let cell of row " 
               [ngClass]="{'currentDate': cell.date == currentDate && currentMonth==month}"
-              (click)="displayMeetingsOfSelectedDate(cell.date)"
-              >
+              (click)="displayMeetingsOfSelectedDate(cell.date)">
                 
                 <p>{{cell.date}}</p>                
                 <p class="mtg-bg"  *ngFor="let mtg of cell.mtgs | orderBy : {property :'startDate'} " (click)="showMeeting(mtg.id)">
