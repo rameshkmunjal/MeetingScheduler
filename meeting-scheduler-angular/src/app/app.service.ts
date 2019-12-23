@@ -6,7 +6,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
   providedIn: 'root'
 })
 export class AppService {
-  private url="http://localhost:3000/api/v1/project";
+  private url="http://18.217.131.254:3000/api/v1/project";
 
   constructor(private http:HttpClient) { }
 

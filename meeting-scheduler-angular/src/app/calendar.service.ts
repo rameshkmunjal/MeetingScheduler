@@ -132,7 +132,7 @@ public add24Objects(dayObj){
 //function - to add meeting data in a day calendar
 public appendMeetingData( mtgArr, newArr){
   let colors=[
-     "green", "pink", "orange", "crimson",
+     "green", "indianred", "orange", "crimson",
      "lightseagreen", "blue", "red", "black", 
      "grey", "darkslategray", "darkgray", "indigo",
      "purple", "darkmagenta", "darkorchid", "darkviolet",
@@ -143,7 +143,7 @@ public appendMeetingData( mtgArr, newArr){
   for(let i=0; i < mtgArr.length; i++){           
       for(let j=0; j < newArr.length; j++){
           let startHour=new Date(mtgArr[i].startDate).getHours();
-          let endMinute = new Date(mtgArr[i].endDate).getMinutes();
+          
           let endHour= new Date(mtgArr[i].endDate).getHours(); 
           let index=Math.floor(Math.random()*(colors.length-1))+1;
           let bgcolor=colors[index];    
@@ -165,9 +165,7 @@ public appendMeetingData( mtgArr, newArr){
                     mtgArr[i].bgcolor=bgcolor;      
                     newArr[j].dayObj.mtgs.push(mtgArr[i]);
                   }
-
-              } 
-              
+              }              
       }
   }
   //console.log(newArr);

@@ -19,7 +19,7 @@
           
           <div *ngIf="mtg.dayObj.mtgs.length > 0">
             <p  style="font-size:0.75rem; display:inline" *ngFor="let mtg of mtg.dayObj.mtgs">
-              <span class="mtg-bg fs-75 mr-100" style="color:black;"  data-toggle="tooltip" data-placement="right" 
+              <span class="mtg-bg fs-75 mr-100 text-white" [ngStyle]="{'background': mtg.bgcolor}"  data-toggle="tooltip" data-placement="right" 
                   title={{mtg.startTime}}-{{mtg.endTime}}:{{mtg.subject}}>
                 {{mtg.startTime}}-{{mtg.endTime}}: {{mtg.subject}}
             </span>                

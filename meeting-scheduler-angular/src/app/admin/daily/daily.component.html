@@ -17,7 +17,7 @@
     <td class="contents-cell">      
       <div *ngIf="mtg.dayObj.mtgs.length > 0">
         <p style="display:inline;" *ngFor="let mtg of mtg.dayObj.mtgs" (click)="showMeeting(m.id)">
-          <a class="mtg-bg text-white fs-75 mr-100" [routerLink]="['/admin-dashboard/single-meeting', mtg.id]" 
+          <a class="mtgInfo text-white fs-75 mr-100" [ngStyle]="{'background': mtg.bgcolor}" [routerLink]="['/admin-dashboard/single-meeting', mtg.id]" 
               data-toggle="tooltip" data-placement="right" 
               title={{mtg.startTime}}-{{mtg.endTime}}{{mtg.subject}}>
               {{mtg.startTime}}-{{mtg.endTime}}{{mtg.subject}}
