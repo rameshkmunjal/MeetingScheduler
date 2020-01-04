@@ -17,7 +17,7 @@ export class DayComponent implements OnInit, OnDestroy {
   @Input() userID:string;//to get from parent component - data-binding
   public authToken:string;//to use in api call 
 
-  public year:number=2019;//constant value
+  public year:number;//constant value
   public monthNumber:any;//month index position
   public month:string;//month name  
   public date:number;//date of the day
@@ -46,6 +46,7 @@ export class DayComponent implements OnInit, OnDestroy {
     this.monthNumber=new Date().getMonth();//current month index position
     this.months=this.library.getMonths();//months array
     this.month=this.months[this.monthNumber];//month name obtained
+    this.year=Number(this.library.getCurrentYear());
     
     this.getSingleViewerMeetings(this.authToken, this.userID);//api call    
   }

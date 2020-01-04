@@ -7,7 +7,8 @@ import {HttpClient, HttpParams} from '@angular/common/http';
   providedIn: 'root'
 })
 export class MeetingService {
-  private url="http://18.217.131.254:3000/api/v1/project";
+  private url="http://localhost:3000/api/v1/project";
+  //"http://18.217.131.254:3000/api/v1/project";
   public mtgData:any=[];
   
 

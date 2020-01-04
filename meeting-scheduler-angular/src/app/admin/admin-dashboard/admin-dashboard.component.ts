@@ -33,7 +33,7 @@ export class AdminDashboardComponent implements OnInit {
   public upcomingMeetings:any=[];//array of upcoming meetings
 //some other variables  
   public mtgDate:String;//to hold mtg date when formatted
-  public year:number=2019;//remains unchanged
+  public year:number;//remains unchanged
   public monthName:string;//name of month
   public monthNumber:number;//index position of month  
   public day:number; 
@@ -52,6 +52,7 @@ export class AdminDashboardComponent implements OnInit {
       this.userId=this.appService.getUserInfoFromLocalstorage().userId;
       this.fullName=this.appService.getUserInfoFromLocalstorage().fullName;
       
+      this.year=Number(this.library.getCurrentYear());
       this.monthNumber=new Date().getMonth();//current month index position
       this.monthName=this.library.getMonthName(this.monthNumber); //get current month name
       this.day=new Date().getDate();//get today date 

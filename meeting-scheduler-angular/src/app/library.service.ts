@@ -4,19 +4,21 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class LibraryService {
-  public weekDays=[
-    "SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"
-  ]
-  public monthArray=[
+  //year should be current year
+  public year:string=JSON.stringify(new Date().getFullYear());
+  //days of week
+  public weekDays:any=["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+  //months in a year
+  public monthArray:any=[
     "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
   ];
-
-  public days=[31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-  
+//days in months of current year
+  public days:any=[];
+//hours in a day 
   public hours=["00","01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12",
   "13", "14", "15", "16", "17", "18", "19", "20", "21", "22","23"];
-
+//minutes in a hour
   public minutesArray=["00", "01", "02", "03", "04", "05", "06", "07","08", "09", 
   "10", "11", "12", "13", "14", "15", "16", "17","18", "19",
   "20", "21", "22", "23", "24", "25", "26", "27","28", "29",
@@ -24,36 +26,62 @@ export class LibraryService {
   "40", "41", "42", "43", "44", "45", "46", "47","48", "49",
   "50", "51", "52", "53", "54", "55", "56", "57","58", "59",
 ];
+//colors 
+public colors=[
+  "green", "indianred", "orange", "crimson",
+  "lightseagreen", "blue", "red", "black", 
+  "grey", "darkslategray", "darkgray", "indigo",
+  "purple", "darkmagenta", "darkorchid", "darkviolet",
+  "darkred", "firebrick", "deeppink", "orangered",
+  "darkkhaki", "magenta", "blueviolet", "limegreen",
+  "forestgreen", "darkgreen"
+ ]
 
-  constructor() { }
+constructor() { }
+//to return array of colors
+public getColors=()=>{
+    return this.colors;
+}
+//-------------------------Year related utility functions-----------------------------------
+//to return current year
+public getCurrentYear=()=>{
+  return this.year;
+}
+//check whether it is leap year - change number of days in february
+public checkLeapYear=(year)=>{
+  let leapYear;
 
-  public getMonths=()=>{
+  if(year%100===0){
+    if(year%400===0){
+      leapYear=true;
+    } else {
+      leapYear=false;			
+    }
+  } else{
+    if(year%4 !== 0){
+      leapYear=false;
+    }else{
+      leapYear=true;
+    }	
+  }
+  console.log(leapYear);
+  return leapYear;
+}
+//-------------------------Month related utility functions-----------------------------------
+//to return months array
+public getMonths=()=>{
     return this.monthArray;
   }
-
-  public getHours=()=>{
-    return this.hours;
-  }
-  public getWeekDays=()=>{
-    return this.weekDays;
-  }
-  public getMonthName=(index)=>{
-    return this.monthArray[index];
-  }
-
-  public getDayInAMonth=(index)=>{
-    return this.days[index];
-  }
-
-  public getMonthIndex=(index)=>{
-    return this.monthArray.indexOf(index);
-  }
-
-  public getMinutes=()=>{    
-    return this.minutesArray;    
-  }
-
-  public getDaysInAMonth=(month)=>{
+//to return name of a month - as per index
+public getMonthName=(index)=>{
+  return this.monthArray[index];
+}
+//to return index position of a month - in months array
+public getMonthIndex=(index)=>{
+  return this.monthArray.indexOf(index);
+}
+//to get days in a particular month
+public getDaysInAMonth=(month)=>{
     let days=[];
     let totalDays;
     
@@ -67,14 +95,56 @@ export class LibraryService {
               month==="Sep" || month==="Nov" ){
           totalDays=30;
     }else if(month==="Feb"){
-          totalDays=28;
+      let lpFlag=this.checkLeapYear(this.year);
+      if(lpFlag){
+        totalDays=29;
+      } else{
+        totalDays=28;
+      }          
     }
     for(let i=1; i<=totalDays; i++){
         days.push(i);
     }
     return days;
   }
+//to return days array
+public getMonthDaysInYear=()=>{
+  let leapFlag=this.checkLeapYear(this.year);
+  if(leapFlag){
+    this.days=[31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  }else{
+    this.days=[31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  }
+  return this.days;
+}
+//to return days in a month - as per index
+public getDayInAMonth=(index)=>{
+  return this.days[index];
+}
+//-------------------------Week related utility functions-----------------------------------
+//to return array of week days
+public getWeekDays=()=>{
+  return this.weekDays;
+}
+//----------------------------------utility functions for Hours, minutes-----------------------
 
+//to return hours
+  public getHours=()=>{
+    return this.hours;
+  }
+//to return array of minutes
+  public getMinutes=()=>{    
+    return this.minutesArray;    
+  }
+  public findMinutesInArray(minutes){
+    for(let i=0; i<this.minutesArray.length; i++){
+      if(Number(this.minutesArray[i])=== minutes){
+        return this.minutesArray[i];
+      }
+    }
+  }
+  
+//---------------------------Date related utility functions-----------------------------------
 
   public prepareDate=(year, month,day, hour, minutes)=>{    
     let meetingDate;        
@@ -86,7 +156,7 @@ export class LibraryService {
     let month=new Date(value).getMonth()+1;     
     return new Date(value).getDate() + "/" + month + "/" +  new Date(value).getFullYear() ;
   }
-
+//---------------------------time related utility functions-----------------------------------------
   public prepareMeetingTime=(dateObj)=>{
     let obj=new Date(dateObj);
     let hours=dateObj.getHours();
@@ -105,14 +175,6 @@ export class LibraryService {
     
     let meetingTime=hours+":"+minutes+" "+ampm;
     return meetingTime;
-}
-
-public findMinutesInArray(minutes){
-  for(let i=0; i<this.minutesArray.length; i++){
-    if(Number(this.minutesArray[i])=== minutes){
-      return this.minutesArray[i];
-    }
-  }
 }
 
 //--------------------validate form inputs ------------------------------
@@ -140,7 +202,7 @@ public findMinutesInArray(minutes){
       return "";         
   }
 
-//---------------------validate dates----------------------
+//---------------------validate dates and form inputs----------------------
 public validateDateInput(date1, date2):any{
   console.log(date1 + " :  "+date2);    
     if(new Date(date1) > new Date(date2)){

@@ -7,7 +7,7 @@ import * as io from 'socket.io-client';
   providedIn: 'root'
 })
 export class SocketService {  
-  private url="http://18.217.131.254:3000";
+  private url="http://localhost:3000";
   private socket;
 
   constructor() { 

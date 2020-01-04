@@ -19,7 +19,7 @@ export class DailyComponent implements OnInit, OnDestroy {
   @Input() userID:string;
   public authToken:string;
   //var to hold calendar values
-  public year:number=2019;
+  public year:number;
   public monthNumber:any;
   public month:string;
   public months:any=[];
@@ -48,6 +48,7 @@ export class DailyComponent implements OnInit, OnDestroy {
     this.monthNumber=new Date().getMonth();//current month index value
     this.months=this.library.getMonths();//array of month names
     this.month=this.months[this.monthNumber];//name of current month
+    this.year=Number(this.library.getCurrentYear());
     //getting meetings relating selected user
     this.getSingleViewerMeetings(this.authToken, this.userID);    
   }

@@ -25,7 +25,7 @@ export class CreateMeetingComponent implements OnInit, OnDestroy {
   public meetingTime:String;
   public day:string=JSON.stringify(new Date().getDate());
   public month:string;
-  public year:String ="2019";
+  public year:string;
   public starthour:String="Hours";
   public startminutes:String="Minutes";
   public endhour:String="Hours";
@@ -60,7 +60,8 @@ export class CreateMeetingComponent implements OnInit, OnDestroy {
     this.monthsArray=this.library.getMonths();    
     this.hours=this.library.getHours(); 
     let i=new Date().getMonth(); 
-    this.month=this.monthsArray[i];           
+    this.month=this.monthsArray[i];  
+    this.year=this.library.getCurrentYear();         
   } 
 
   ngOnDestroy() {///destroy page - when exited

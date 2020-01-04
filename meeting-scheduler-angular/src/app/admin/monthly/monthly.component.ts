@@ -7,7 +7,7 @@ import {MeetingService} from './../../meeting.service';
 import {LibraryService} from './../../library.service';
 import {CalendarService} from './../../calendar.service';
 import {ToastrService} from 'ngx-toastr';
-import { createEmptyStateSnapshot } from '@angular/router/src/router_state';
+
 
 @Component({
   selector: 'app-monthly',
@@ -32,7 +32,7 @@ export class MonthlyComponent implements OnInit, OnDestroy {
 
   public selectedDate:number=1; //to hold date selected 
   public currentDate:Number=new Date().getDate();//current date to highlight
-  public year:String='2019';  //a constant
+  public year:String;  //a constant
 
   constructor(    
     private router:Router,
@@ -50,6 +50,7 @@ export class MonthlyComponent implements OnInit, OnDestroy {
     this.hours=this.library.getHours();//array of hours - created
     this.month=this.library.getMonthName(this.monthIndex);//month name as per index
     this.currentMonth=this.library.getMonthName(this.monthIndex);
+    this.year=this.library.getCurrentYear();
     //api call to get monthly calendar
     this.getSingleViewerMeetings(this.authToken, this.userID);
   }

@@ -42,7 +42,7 @@ export class WeekComponent implements OnInit, OnDestroy {
   public currentDate:Number=new Date().getDate();
   public currentMonth:string;
 
-  public year:String='2019';  
+  public year:String;  
   public mtgsOfSelectedDate:any=[];
   public datesArray:any=[];
 
@@ -65,7 +65,7 @@ export class WeekComponent implements OnInit, OnDestroy {
     this.hours=this.library.getHours();
     this.days=this.library.getWeekDays();
     this.month=this.months[this.monthIndex];
-    
+    this.year=this.library.getCurrentYear();
     //api call to get monthly calendar
     this.getSingleViewerMeetings(this.authToken, this.userID);
   }
@@ -82,10 +82,12 @@ export class WeekComponent implements OnInit, OnDestroy {
         this.dailyCalendar=this.calendar.getDailyCalendar(); //to get date wise calendar of year         
         this.dailyCalendar=this.calendar.create371Objects(this.dailyCalendar);
         this.weeklyCalendar=this.calendar.make53Weeks(this.dailyCalendar); 
-        this.currentWeek=this.calendar.findCurrentWeek(this.date, this.month, this.weeklyCalendar);  
+        this.currentWeek=this.calendar.findCurrentWeek(this.date, this.month, this.weeklyCalendar);          
         this.weekIndex=this.currentWeek.weekIndex;
-        this.startDate=this.currentWeek.weekArr[0].date ;
-        this.startDateMonth=this.currentWeek.weekArr[0].month ;
+        this.startDate=this.getStartDate(this.currentWeek.weekArr);
+        this.startDateMonth=this.getStartDateMonth(this.currentWeek.weekArr);
+        //this.startDate=this.currentWeek.weekArr[0].date ;
+        //this.startDateMonth=this.currentWeek.weekArr[0].month ;
         this.endDate= this.currentWeek.weekArr[6].date    ;
         this.endDateMonth=this.currentWeek.weekArr[6].month    ;
         this.weeklyArr=this.calendar.make24Objects(this.currentWeek);
@@ -114,8 +116,8 @@ public getPreviousWeek():any{
     this.weekIndex=0;
     this.currentWeek=this.weeklyCalendar[this.weekIndex];  
     this.weekIndex=this.currentWeek.weekIndex;
-    this.startDate=1 ;
-    this.startDateMonth=this.currentWeek.weekArr[0].month ;
+    this.startDate=this.getStartDate(this.currentWeek.weekArr) ;
+    this.startDateMonth=this.getStartDateMonth(this.currentWeek.weekArr) ;
     this.endDate= this.currentWeek.weekArr[6].date    ;
     this.endDateMonth=this.currentWeek.weekArr[6].month    ;
   } else {
@@ -157,5 +159,21 @@ public getNextWeek():any{
   
 }
 //-------------------------------------------------------------------------
+//-------------------------------------------------------------------------
+public getStartDate=(wkArr)=>{
+  for(let i=0; i < wkArr.length;  i++){
+    if(wkArr[i].date !== null){
+      return wkArr[i].date;
+    }
+  }
+}
+public getStartDateMonth=(wkArr)=>{
+  for(let i=0; i < wkArr.length;  i++){
+    if(wkArr[i].month !== null){
+      return wkArr[i].month;
+    }
+  }
+}
+//-------------------------------------------------------------------------------------
 
 }

@@ -31,7 +31,7 @@ export class ViewerDashboardComponent implements OnInit, OnDestroy {
 
   public errorMessage:String;//error message to show 
 
-  public year:number=2019;//remains unchanged
+  public year:number;//remains unchanged
   public monthName:string;//name of month
   public monthNumber:number;//index position of month  
   public day:number; 
@@ -55,6 +55,7 @@ export class ViewerDashboardComponent implements OnInit, OnDestroy {
       this.monthNumber=new Date().getMonth();//current month index position
       this.monthName=this.library.getMonthName(this.monthNumber); //get current month name
       this.day=new Date().getDate();//get today date 
+      this.year=Number(this.library.getCurrentYear());
       //socket calls       
       this.checkStatus();    
       this.verifyUserConfirmation();

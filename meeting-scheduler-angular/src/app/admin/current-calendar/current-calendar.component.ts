@@ -22,7 +22,7 @@ export class CurrentCalendarComponent implements OnInit, OnDestroy {
   public currentMonth:string;//to hold current month name
   public month:string; //to hold month name 
   public monthNumber:Number;// to hold index value of month
-  public year:String='2019'; 
+  public year:string; 
   //public selectedDate:number=1;  
   public currentDate:Number=new Date().getDate();
   //declaring arrays
@@ -53,6 +53,7 @@ export class CurrentCalendarComponent implements OnInit, OnDestroy {
     this.hours=this.library.getHours();//to house array with hours 0-23
     this.month=this.library.getMonthName(this.monthIndex);//month name as per index value
     this.currentMonth=this.library.getMonthName(this.monthIndex);
+    this.year=this.library.getCurrentYear();
     //api call to get monthly calendar as per normal viewer id
     this.getSingleViewerMeetings(this.authToken, this.userId);
   }

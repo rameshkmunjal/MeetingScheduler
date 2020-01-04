@@ -20,7 +20,7 @@ export class MonthComponent implements OnInit, OnDestroy {
   public currentMonth:string;//current month
   public month:string; //month name    
   public currentDate:Number=new Date().getDate();//current date 
-  public year:String='2019'; //constant value
+  public year:String; //constant value
   public selectedDate:number=1;
 
   public meetingArray:any=[]; //holding all meetings 
@@ -44,6 +44,7 @@ export class MonthComponent implements OnInit, OnDestroy {
     this.hours=this.library.getHours();
     this.month=this.library.getMonthName(this.monthIndex);
     this.currentMonth=this.library.getMonthName(this.monthIndex);
+    this.year=this.library.getCurrentYear();
     //api call to get monthly calendar
     this.getSingleViewerMeetings(this.authToken, this.userID);
   }

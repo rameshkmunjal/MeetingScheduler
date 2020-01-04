@@ -6,33 +6,66 @@ import {LibraryService} from './library.service';
   providedIn: 'root'
 })
 export class CalendarService {
-  //days in months of 2019
-  public days=[31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  public year:number=Number(this.library.getCurrentYear())
+  //days in months of 2020
+  public days=this.library.getMonthDaysInYear();
   //week days 
-  public weekDays=[
-    "SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"
-  ]
+  public weekDays=this.library.getWeekDays();
   //months 
-  public months=[
-    "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
-    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-  ];
-  //calendar - of 2019 to be used again and again - 
+  public months=this.library.getMonths();
+  //calendar - of 2020 to be used again and again - 
   //hence stored in this variable array
   public dailyCalendar:any=[];
 
   constructor(//instance
     private library:LibraryService
   ) {}
-//calendar of year 2019 created
+  //----------------------------------------------------------------------
+//function used in above function-getDailyCalendar
+public  getCalendar=(year)=>{
+  let firstDayNumberOfYear=new Date('January 1, '+ year).getDay();    
+  let dayNumber=firstDayNumberOfYear;
+  let calenderObjArray=[];
+  let dayIndex=0;    
+
+  for(let i=0; i < 12; i++){
+
+    let limit=this.days[i];
+        
+    for(let j=1; j<= limit; j++){  
+      if(dayNumber > 7){
+        dayNumber=dayNumber%7;
+      }
+      if(dayNumber === 7){
+        dayNumber= 0;
+      }
+      let weekDay = this.weekDays[dayNumber];
+      //console.log(weekDay);
+      let temp={
+        year:year,
+        dayIndex:dayIndex++,
+        month:this.months[i] ,
+        monthIndex:i,
+        weekDay:weekDay,
+        date:j,
+        mtgs:[]
+      }			
+      calenderObjArray.push(temp);			
+      dayNumber++;
+      }		
+    }
+    return calenderObjArray;
+}
+//-------------------------------------------------------------------------------
+//calendar of year 2020 created
   public getDailyCalendar(){
-    let calendar=this.getCalendar(2019);
+    let calendar=this.getCalendar(this.year);
     this.dailyCalendar=calendar;
     return calendar;
   }
 //month wise calendar created
   public getMonthlyCalendar(){
-    let calendar=this.getCalendar(2019);    
+    let calendar=this.getCalendar(this.year);    
     let monthlyCalendar=[];
     for(let j=0; j<this.months.length; j++){
       let temp={ index:undefined, monthArr:[] };
@@ -54,43 +87,7 @@ export class CalendarService {
       }
     }    
   }
-//function used in above function-getDailyCalendar
-  public  getCalendar=(year)=>{
-    let firstDayNumberOfYear=new Date('January 1, '+ year).getDay();    
-    let dayNumber=firstDayNumberOfYear;
-    let calenderObjArray=[];
-    let dayIndex=0;    
-	
-	  for(let i=0; i < 12; i++){
-		
-    let limit=this.days[i];
-    		
-		for(let j=1; j<= limit; j++){
-			//console.log("inner loop");
-												
-			if(dayNumber > 7){
-				dayNumber=dayNumber%7;
-			}
-			if(dayNumber === 7){
-				dayNumber= 0;
-			}
-			let weekDay = this.weekDays[dayNumber];
-      //console.log(weekDay);
-      let temp={
-        year:year,
-        dayIndex:dayIndex++,
-        month:this.months[i] ,
-        monthIndex:i,
-        weekDay:weekDay,
-        date:j,
-        mtgs:[]
-      }			
-			calenderObjArray.push(temp);			
-			dayNumber++;
-		}		
-    }
-    return calenderObjArray;
-  }
+
 //----------------------------------------------------------------------------------------------
 //function - when a particular day calendar object is returned
 public getSelectedDayCalendar(cal, day, month){
@@ -131,15 +128,8 @@ public add24Objects(dayObj){
 //--------------------------------------------------------------------------------------------------------
 //function - to add meeting data in a day calendar
 public appendMeetingData( mtgArr, newArr){
-  let colors=[
-     "green", "indianred", "orange", "crimson",
-     "lightseagreen", "blue", "red", "black", 
-     "grey", "darkslategray", "darkgray", "indigo",
-     "purple", "darkmagenta", "darkorchid", "darkviolet",
-     "darkred", "firebrick", "deeppink", "orangered",
-     "darkkhaki", "magenta", "blueviolet", "limegreen",
-     "forestgreen", "darkgreen"
-    ]
+  let colors=this.library.getColors();
+  console.log(colors);
   for(let i=0; i < mtgArr.length; i++){           
       for(let j=0; j < newArr.length; j++){
           let startHour=new Date(mtgArr[i].startDate).getHours();
@@ -183,9 +173,12 @@ public feedMeetingData( mtgArr, newArr){
       for(let j=0; j < newArr.length; j++){                
           let mtgDate=new Date(mtgArr[i].startDate).getDate();
           let num=new Date(mtgArr[i].startDate).getMonth();
-          let mtgMonth=this.months[num];           
+          let mtgMonth=this.months[num]; 
+          let mtgYear= new Date(mtgArr[i].startDate).getFullYear();
+          console.log(mtgYear); 
+                
                     
-          if(mtgMonth==newArr[j].month && mtgDate==newArr[j].date){                 
+          if(mtgMonth==newArr[j].month && mtgDate==newArr[j].date && mtgYear==this.year){                 
             newArr[j].mtgs.push(mtgArr[i]);   
           }
       }

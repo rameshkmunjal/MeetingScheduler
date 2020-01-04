@@ -34,7 +34,7 @@ export class EditMeetingComponent implements OnInit, OnDestroy {
 //current meeting data
   public currentMeeting:any;   
 //variables - meeting data  
-  public year:String='2019';
+  public year:string;
   public month:string;
   public day:string;
   public hour:string;  
@@ -61,6 +61,7 @@ export class EditMeetingComponent implements OnInit, OnDestroy {
     //getting array values
     this.monthsArray=this.library.getMonths();
     this.hours=this.library.getHours(); 
+    this.year=this.library.getCurrentYear();
     //function call - getting current meeting data   
     this.getCurrentMeeting(this.meetingId);
   }
