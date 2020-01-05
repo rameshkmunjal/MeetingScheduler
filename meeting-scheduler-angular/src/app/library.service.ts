@@ -127,7 +127,6 @@ public getWeekDays=()=>{
   return this.weekDays;
 }
 //----------------------------------utility functions for Hours, minutes-----------------------
-
 //to return hours
   public getHours=()=>{
     return this.hours;
@@ -142,10 +141,8 @@ public getWeekDays=()=>{
         return this.minutesArray[i];
       }
     }
-  }
-  
+  }  
 //---------------------------Date related utility functions-----------------------------------
-
   public prepareDate=(year, month,day, hour, minutes)=>{    
     let meetingDate;        
     meetingDate=new Date(year, month, day, hour, minutes, 0 , 0);

@@ -2,13 +2,13 @@ const jwt=require('jsonwebtoken');
 const shortid=require('shortid');
 const secretKey="somescrettextgoeshere";
 
-//function - to generate jwt token
+//function  - to generate jwt token
 let generateToken=(data, cb)=>{
     try{
         let claims={
             jwtid:shortid.generate(),
             iat:Date.now(),
-            exp:new Date("2020-01-31T05:43:00.000Z").getTime()/1000,
+            exp:new Date("2020-03-31T05:43:00.000Z").getTime()/1000,
             sub:'authToken',
             iss:'munjalproject',
             data:data
