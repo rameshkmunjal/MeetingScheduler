@@ -17,6 +17,7 @@ import {ToastrService} from 'ngx-toastr';
 export class EditMeetingComponent implements OnInit, OnDestroy {
   private authToken:String;//to send with api call
   public meetingId:String;//route param of this page
+  public adminId:string;
 
   public starthour:string="Hour";
   public startminutes:string="Minutes";
@@ -29,6 +30,7 @@ export class EditMeetingComponent implements OnInit, OnDestroy {
   public days:any=[];
   public hours:any=[];
   public minutesArr:any=[];
+  public allInvitees:any=[];
 //index position of month array
   public monthIndex:number; 
 //current meeting data
@@ -36,6 +38,7 @@ export class EditMeetingComponent implements OnInit, OnDestroy {
 //variables - meeting data  
   public year:string;
   public month:string;
+  
   public day:string;
   public hour:string;  
   public minutes:string;
@@ -56,13 +59,18 @@ export class EditMeetingComponent implements OnInit, OnDestroy {
   ngOnInit() {
     //getting auth token
     this.authToken=this.appService.getUserInfoFromLocalstorage().authToken;
+    this.adminId=this.appService.getUserInfoFromLocalstorage().userId;
     //getting route param
     this.meetingId=this._route.snapshot.paramMap.get('mtgId');
     //getting array values
     this.monthsArray=this.library.getMonths();
     this.hours=this.library.getHours(); 
     this.year=this.library.getCurrentYear();
-    //function call - getting current meeting data   
+    this.monthIndex=new Date().getMonth();
+    this.month=this.monthsArray[this.monthIndex];
+    this.getDaysInAMonth();
+    //function call - getting current meeting data 
+    this.getAllInviteesList(this.meetingId, this.authToken);  
     this.getCurrentMeeting(this.meetingId);
   }
 
@@ -150,13 +158,38 @@ public getMtgObject=()=>{
         endTime:mtgEndTime, 
         convenor:this.currentMeeting.convenor,
         convenorMobile:this.currentMeeting.convenorMobile,       
-        meetingVenue:this.currentMeeting.meetingVenue
+        meetingVenue:this.currentMeeting.meetingVenue,
+        viewerList:this.allInvitees
       }
     console.log(data);  
     this.socketService.editMeeting(data);
     this.router.navigate(['/admin-dashboard/home']);
-  }
-  
+  }  
+}
+//---------------------------Get Invitees Details--------------------------------------
+//to get list of all invitees
+public getAllInviteesList(mtgId, authToken):any{
+  this.meetingService.getAllInvitees(mtgId, authToken).subscribe(
+    apiResponse=>{
+      if(apiResponse.status===200){
+        this.allInvitees=apiResponse.data;
+        this.allInvitees=this.meetingService.removeAdminName(this.allInvitees, this.adminId);
+      } else {
+        this.toastr.error(apiResponse.message);
+        let errorCode = apiResponse.status;
+        let errorMessage = apiResponse.message;
+        this.router.navigate(['/error', errorCode, errorMessage]);
+      } 
+    }, error=>{   //showing error message
+        
+      if(error.error.message){            
+        let errorMessage=error.error.message;
+        let errorCode=error.status;
+        this.router.navigate(['/error', errorCode, errorMessage]);
+       } else {            
+        this.toastr.error(error.message);
+       }        
+    }) //subscribe method ended
 }
 
 //--------------------some utility functions------------------------------

@@ -13,6 +13,7 @@ import {ToastrService} from 'ngx-toastr';
 export class InviteeListComponent implements OnInit {
   public meetingId:string;//to get from route
   public authToken:string;//to get from localStorage
+  public adminId:string;//to get from localStorage
 
   public mtgDate:string;//to hold formatted date
   public currentMeeting:any;//object  to hold current meeting data
@@ -30,7 +31,8 @@ export class InviteeListComponent implements OnInit {
 
   ngOnInit() {
     this.meetingId=this._route.snapshot.paramMap.get('meetingId');    
-    this.authToken=(this.appService.getUserInfoFromLocalstorage()).authToken; 
+    this.authToken=(this.appService.getUserInfoFromLocalstorage()).authToken;
+    this.adminId=(this.appService.getUserInfoFromLocalstorage()).userId; 
     this.getAllInviteesList(this.meetingId, this.authToken); 
   }
   //---------------------------------function definitons -----------------------------------------------
@@ -41,6 +43,7 @@ export class InviteeListComponent implements OnInit {
       apiResponse=>{
         if(apiResponse.status===200){
           this.allInvitees=apiResponse.data;
+          this.allInvitees=this.meetingService.removeAdminName(this.allInvitees, this.adminId);
         } else {
           this.toastr.error(apiResponse.message);
           let errorCode = apiResponse.status;

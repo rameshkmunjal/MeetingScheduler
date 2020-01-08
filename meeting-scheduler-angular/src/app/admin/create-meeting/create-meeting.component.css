@@ -6,3 +6,24 @@
 .time-line:first-child{
 	margin-left:0px;
 }
+/*--------class for check-boxes to select user---------*/
+.checkbox-label:hover{
+	background:gray;
+	color:black;
+	font-weight:bold;
+}
+/*------classes for two buttons - all invitees and select invitees----*/
+.normalBtn{
+	color:white;
+	background:#17252A;
+	border:none;
+	font-size:0.8rem;	
+}
+.selectBtn{
+	color:rgb(193, 247, 205);
+	background:#17252A;
+	border:none;
+	font-size:0.8rem;	
+}
+/*--------------------------------------------------*/
+

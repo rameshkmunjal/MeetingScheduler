@@ -79,9 +79,10 @@ let setServer=(server)=>{
             data.result="";
             let mtgData=createMeeting(data, function(msgData){
                 console.log("Inside create meeting cb :: data result is: " + msgData);
+                data.notice="New Meeting";
                 myIo.emit('get-new-meeting-message', msgData);
-                eventEmitter.emit('send-email', msgData);
-                eventEmitter.emit('add-invitees', msgData);
+                eventEmitter.emit('send-email', data);
+                eventEmitter.emit('add-invitees', data);
             });
             
             console.log("data result is :" + mtgData);          
@@ -90,6 +91,7 @@ let setServer=(server)=>{
 
         socket.on('edit-meeting', (data)=>{
             // console.log("data to edit a  meeting received " + data);
+            data.notice="Change In Meeting Details";
             data.eventType="edit";
             eventEmitter.emit('edit-a-meeting', data);           
             //to send data - by emitting event - send-email
@@ -156,14 +158,18 @@ let createMeeting=(data, meetingCompleteCB) =>{
     newMeeting.save((err, result)=>{
         if(err){
             console.log(err);            
-        } else {            
-            meetingCompleteCB(result);
-            return result;
+        } else {
+            let tempResult=result; 
+            data.meetingId = result.meetingId;
+            tempResult.invitees=data.viewerList; 
+            console.log("tempResult : "+ JSON.stringify(tempResult) + JSON.stringify(data));          
+            meetingCompleteCB(tempResult);
+            return tempResult;
         }
     })//new meeting saved                    
 }
 
-//---------------------------------------Cancel Invitation-----------------------------------------------------
+//---------------------------------------Invitation-----------------------------------------------------
 let sendInvitation=(data, inviteDataCB)=>{     
         let invitation= new InvitationModel({
             id:shortId.generate(),
@@ -219,20 +225,12 @@ eventEmitter.on('edit-a-meeting', (data)=>{
 eventEmitter.on('add-invitees', (data)=>{
     //creating MongoDB record - using InvitationModel , UserModel and mongoose
     let mtgId=data.meetingId;
-    console.log(mtgId);
-    UserModel.find()
-        .exec((err, allUsers)=>{
-            if(err){
-                console.log(err);
-            } else if(check.isEmpty(allUsers)){
-                console.log("No Data found");
-            } else {
-                //console.log(allUsers);
-                for(let user of allUsers){
-                    sendInvitationToAllViewers(user.userId);
-                }
-            }
-    })
+    let allInvitees=data.viewerList;
+    
+    for(let user of allInvitees){
+        console.log("create meeting email sent to "+user.firstName);
+        sendInvitationToAllViewers(user.userId);
+    }            
 
     function sendInvitationToAllViewers(userId){
         let invitation= new InvitationModel({
@@ -256,23 +254,16 @@ eventEmitter.on('add-invitees', (data)=>{
 
 //--------------------------------sendEmail started------------------------------------------------
 eventEmitter.on('send-email', (data)=>{
-    console.log("inside send-email");
+    console.log("inside send-email line 258");
     console.log(data);
     //get all users email address and send email
-    UserModel.find()
-        .exec((err, users)=>{
-            if(err){//when query failed
-                console.log(err);
-            } else if (check.isEmpty(users)){//when query found no data
-                console.log("no user data found");
-            } else {//when query is successful                
-                console.log(users); //use each use object and send email
-                for(let i=0; i < users.length; i++){
-                    let user=users[i];
-                    emailLib.sendMeetingInfo(data, user ) ;
-                }//for loop ended                           
-            }//else block ended
-        })//exec method ended
+    let allInvitees=data.viewerList;
+    
+    for(let i=0; i < allInvitees.length; i++){
+        let user=allInvitees[i];
+        emailLib.sendMeetingInfo(data, user ) ;
+    }//for loop ended                           
+            
 })//event send mail ended
 //--------------------------------sendEmail ended-------------------------------------------
 module.exports={

@@ -7,7 +7,9 @@ let sendMeetingInfo=(data, user)=>{
     let month=tempDt.getMonth()+1;
     let year=tempDt.getFullYear();
     let mtgDate=""+day+"/"+month+"/"+year+"";
-    const output = `    <p>You are coordially invited to attend following meeting at stipulated date and time:</p> 
+    const output = `    
+                        <h3>${data.notice}</h3>
+                        <p>You are coordially invited to attend following meeting at stipulated date and time:</p> 
                                             
                         <p>${data.meetingName} - Dated : ${mtgDate} Time : ${data.startTime}</p>                        
                             <p>Venue : ${data.meetingVenue} </p>                            
@@ -22,7 +24,7 @@ let sendMeetingInfo=(data, user)=>{
                         secure: true, // true for 465, false for other ports
                         auth: {
                             user: 'rkm120562@gmail.com', // generated ethereal user
-                            pass: 'rkm@100283'  // generated ethereal password
+                            pass: 'nvbwretiwehttrck'  // generated ethereal password
                         },
                         tls:{
                             rejectUnauthorized:false
@@ -34,7 +36,7 @@ let sendMeetingInfo=(data, user)=>{
                     from: 'rkm120562@gmail.com', // sender address
                     to: `${user.email}`, // list of receivers
                     subject: `${data.meetingName} - Dated : ${mtgDate} From : ${data.startTime} To : ${data.endTime}`, // Subject line
-                    text: `Dear ${user.firstName} ${user.lastName} ! Please attend the above named meeting`  , // plain text body
+                    text: `Dear ${user.fullName} ! Please attend the above named meeting`  , // plain text body
                     html: output // html body
                 };
 
@@ -64,7 +66,7 @@ let sendOTP=(otp, emailAddress)=>{
             secure: true, // true for 465, false for other ports
             auth: {
                     user: 'rkm120562@gmail.com', // generated ethereal user
-                    pass: 'rkm@100283'  // generated ethereal password
+                    pass: 'nvbwretiwehttrck'  // generated ethereal password
                 },
             tls:{
 					rejectUnauthorized:false

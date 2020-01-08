@@ -8,7 +8,7 @@ const response=require('./../libs/responseLib');
 const check=require('./../libs/checkLib');
 
 let isAuthrised=(req, res, next)=>{
-    console.log(req.params.authToken);
+    //console.log(req.params.authToken);
     if(req.params.authToken || req.body.authToken || req.query.authToken || req.header('authToken')){
         Auth.findOne({authToken : req.params.authToken || req.body.authToken || 
             req.query.authToken || req.header('authToken')}, (err, authDetails)=>{

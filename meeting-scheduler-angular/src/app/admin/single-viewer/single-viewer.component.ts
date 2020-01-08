@@ -10,17 +10,17 @@ import {ActivatedRoute} from '@angular/router';
 
 export class SingleViewerComponent implements OnInit  {//
   public userId:string;
+  public periodSelected:string='monthly';
 
   constructor(private _route:ActivatedRoute){
-    console.log("Single Viewer Component ::: Constructor")
+    console.log("Single Viewer Component ::: Constructor");
   }
   ngOnInit(){    
     this.userId=this._route.snapshot.paramMap.get('viewerId');    
   }
 
-  //function to decide period of calendar to be shown
-  public periodSelected:string='monthly'
-  onNavigate(period){
+  //function to decide period of calendar to be shown  
+  public onNavigate(period){
     this.periodSelected=period;    
   }
 //-----------------------end of class defintion -------------------------------------------

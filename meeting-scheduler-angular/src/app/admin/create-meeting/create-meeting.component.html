@@ -1,3 +1,32 @@
+<!--Code to show modal-->
+<!----modal created to show all users names : to select who is to be invited---------->
+<div class="modal" id="inviteModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header ---->
+        <div class="modal-header" >          
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body" *ngIf="viewerList.length > 0">
+            <p><b>Make selection out of following-</b></p>
+            <label class="btn checkbox-label bg-white btn-outline-secondary mr-2" *ngFor="let user of viewerList"  >
+                <input type="checkbox" name="user" [(ngModel)]="user.invited" > 
+                {{user.firstName}} {{user.lastName}} 
+            </label> <br>        
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="setFlagSelect()">Save</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>  
+<!---------------------------------------------------------------------------------------->
 <!--code to show create meeting page-->
 <!---div to show error messages-->
 <div class="row">
@@ -17,8 +46,7 @@
               <input type="text" class="form-control"  placeholder="Agenda" name="meetingName" [(ngModel)]="meetingName" />            
             </div>            
             <!--div to show date-->
-            <div class="d-flex justify-space-between mt-4">            
-              
+            <div class="d-flex justify-space-between mt-4"> 
                 <select class="time-line form-control" name="day" [(ngModel)]="day" >
                   <option>{{day}}</option>
                   <option *ngFor="let day of days">{{day}}</option>
@@ -65,17 +93,24 @@
               <select class="time-line form-control" name="endminutes" [(ngModel)]="endminutes">
                   <option>{{endminutes}}</option>
                 <option *ngFor="let endminutes of minutesArr">{{endminutes}}</option>
-              </select>
-                      
+              </select>                      
         </div>
          <!--div to show time-->   
         <div class="mt-4">
-            <input type="text" class="form-control" placeholder="Venue" name="meetingVenue" [(ngModel)]="meetingVenue" /> 
+            <input type="text" class="form-control" placeholder="Venue" name="meetingVenue" [(ngModel)]="meetingVenue" />         
         </div>
-
-          <div class="btn-holder text-center mt-3 mb-3">
-              <button class="btn submitBtn" type="submit">Submit</button>
-          </div>
+        <div class="mt-4 text-white">
+            <button type="button" class="mr-3" [ngClass]="{'selectBtn': someSelected == true, 'normalBtn': someSelected == false }"
+            data-toggle="modal" (click)="deselectCheckBoxes()" data-target="#inviteModal">
+                Select Invitees             
+            </button> OR
+            <button type="button" class="ml-3" [ngClass]="{'selectBtn': allSelected == true, 'normalBtn': allSelected == false }"
+            (click)="getListOfAllUsers()">Invite All</button>
+        </div>
+      
+        <div class="btn-holder text-center mt-4 mb-3">
+          <button class="btn submitBtn" type="submit">Submit</button>
+        </div>
       </form> 
     </div>
 </div>

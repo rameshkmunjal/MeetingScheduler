@@ -20,6 +20,33 @@ const AuthModel=mongoose.model('Auth');
 
 //------------------------------------Function Definitions----------------------------------------
 //getAllViewers - users who have viewer rights
+let getAdminDetailsById=(req, res)=>{
+    //res.send("getAllUsers function accessed");
+    UserModel.findOne({'userId':req.params.adminId})
+        .select('-_id-__v')
+        .lean()
+        .exec((err, result)=>{
+            if(err){
+                logger.error(err.message, 'User Controller: getAllViewers', 10);                
+                let apiResponse=response.generate(true, "Some Error Occured", 500, err)                       
+                res.send(apiResponse);
+            } else if(check.isEmpty(result)){
+                logger.info('No User Found', 'User Controller: getAllViewers');                
+                let apiResponse=response.generate(true, "No Data found", 404, result)                       
+                res.send(apiResponse);
+            } else{
+                //delete properties - we dont want to send client side                
+                delete result.__v;
+                delete result._id;
+                delete result.password;                
+                
+                let apiResponse=response.generate(false, "Admin Data fetched successfully", 200, result)                       
+                res.send(apiResponse);                
+            }
+        })
+}
+//--------------------------------------------------------------------------------------------------------------
+//getAllViewers - users who have viewer rights
 let getAllViewers=(req, res)=>{
     //res.send("getAllUsers function accessed");
     UserModel.find({'rights':req.params.viewer})
@@ -443,6 +470,7 @@ let logout=(req, res)=>{
 //------------------------------------------------------------------------------------------------------------
 //userController functions exported
 module.exports={
+    getAdminDetailsById:getAdminDetailsById,
     getAllViewers:getAllViewers,    
     signupFunction:signupFunction,
     loginFunction:loginFunction,

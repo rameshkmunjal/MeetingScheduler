@@ -47,6 +47,11 @@ export class AppService {
   public getUserInfoFromLocalstorage(){
     return JSON.parse(localStorage.getItem('userDetails'));
   }
+  //--------------------------------------------------------------------------------
+  //api call to get admin details 
+  public getAdminDetailsById(authToken, adminId):any{
+    return this.http.get(`${this.url}/${authToken}/adminDetails/${adminId}`);
+  }
   //api call- to get all viewers info
   public getViewerList(authToken):Observable<any>{    
     console.log("getUserList called");

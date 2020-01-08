@@ -13,7 +13,16 @@ export class MeetingService {
   
 
   constructor(private http:HttpClient) { } 
-
+//---------------------------------simple functions---------------------------------------
+public removeAdminName(list, id):any{
+  for(let i=0; i<list.length; i++){
+    if(list[i].userId===id){
+      list.splice(i, 1);
+    }
+  }
+  return list;
+}
+//---------------------------------------api calls----------------------------------------
 //api call - to get all meetings details
 public getAllMeetings(authToken):Observable<any>{
   return this.http.get(`${this.url}/${authToken}/allMeetings`);

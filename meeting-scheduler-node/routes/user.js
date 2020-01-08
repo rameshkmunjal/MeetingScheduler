@@ -8,6 +8,7 @@ let setRouter=(app)=>{
     let baseUrl=appConfig.apiVersion+"/project";
     
     app.get(baseUrl+'/:authToken/allViewers/:viewer', auth.isAuthorised, userController.getAllViewers);
+    app.get(baseUrl+'/:authToken/adminDetails/:adminId', auth.isAuthorised, userController.getAdminDetailsById);    
     app.post(baseUrl+'/signup', userController.signupFunction);
     app.post(baseUrl+'/login', userController.loginFunction);
     app.post(baseUrl+'/:userId/logout', auth.isAuthorised,  userController.logout);

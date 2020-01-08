@@ -1,3 +1,11 @@
+<!---------------------BreadCrumb-to show navigation path------------------------------------->
+<nav class="pt-3">
+  <ol class="breadcrumb ">
+      <li class="breadcrumb-item"><a [routerLink]="['/admin-dashboard/home']">Home</a></li>
+      <li class="breadcrumb-item"><a [routerLink]="['/admin-dashboard/single-meeting', meetingId]">Single Meeting</a></li>
+      <li class="breadcrumb-item active">Invitees</li>      
+  </ol>
+</nav>
 <!------------------------------------------------------------------------------------------------>
 <div class="row" *ngIf="currentMeeting">
   <div class="col-xs-12 col-md-12">
@@ -24,7 +32,7 @@
   </div>
 </div>
 <!----------------------------------buttons  starts here-------------------------------------------------->
-<div class="d-flex justify-content-center pt-4">
+<div class="d-flex justify-content-center pt-2">
   <a class="headerBtn" [ngClass]="{'activeBtn': isInvitee == true, 'headerBtn': isInvitee == false }" (click)="showList('invitees')" >Invitees</a>
   <a class="headerBtn" [ngClass]="{'activeBtn': isNonInvitee == true, 'headerBtn': isNonInvitee == false }" (click)="showList('non-invitees')">Non-Invitees</a>     
 </div>

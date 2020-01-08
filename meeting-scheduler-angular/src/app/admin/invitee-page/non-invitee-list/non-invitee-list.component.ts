@@ -16,6 +16,7 @@ import {ToastrService} from 'ngx-toastr';
 export class NonInviteeListComponent implements OnInit {
   public meetingId:string;//to get from route
   public authToken:string;//to get from localStorage
+  public adminId:string;//to get from localStorage
 
   public mtgDate:string;//to hold formatted date
   public currentMeeting:any;//to hold current meeting object info
@@ -35,6 +36,7 @@ export class NonInviteeListComponent implements OnInit {
   ngOnInit() {
     this.meetingId=this._route.snapshot.paramMap.get('meetingId');
     this.authToken=(this.appService.getUserInfoFromLocalstorage()).authToken;
+    this.adminId=(this.appService.getUserInfoFromLocalstorage()).userId;
     //function calls
     this.getSingleMeetingDetails(this.meetingId, this.authToken); 
     this.getAllNonInviteesList(this.meetingId, this.authToken); 
@@ -70,7 +72,8 @@ public getAllNonInviteesList(mtgId, authToken):any{
     apiResponse=>{
       if(apiResponse.status===200){
       console.log(apiResponse);
-      this.allNonInvitees=apiResponse.data;        
+      this.allNonInvitees=apiResponse.data; 
+      this.allNonInvitees=this.meetingService.removeAdminName(this.allNonInvitees, this.adminId);       
       console.log(this.allNonInvitees);
     }else {
       let errorCode=apiResponse.status;
