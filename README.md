@@ -133,7 +133,12 @@ Some innovations to make the site more useful - being explained as following.
 		
 		Frontend Link : meet.bestbuddy.io
 		Backend Link  : http://18.217.131.254:3000/api/v1/project
-	
+		
+## Updations :
+		In Create Meeting form -
+			- Two buttons have been created - Select Invitee OR Invite All
+			- Admin can choose any option out of two.
+			
 ## Contributors:
 
     1. Ramesh Kumar Munjal
